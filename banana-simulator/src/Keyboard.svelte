@@ -46,8 +46,8 @@
 
 <style>
 	#keyboard {
-		width: 100%;
-		margin-top: 8px;
+		width: 240px;
+		margin-top: 74px;
 	}
 	.controls {
 		margin-bottom: 8px;

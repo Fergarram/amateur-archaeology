@@ -7,10 +7,12 @@ AppCore.init();
 </script>
 
 <main>
-	<section id="device">
-		<div id="screen"></div>
-		<Keyboard/>
-	</section>
+	<div id="phone">
+		<div id="device-io">
+			<div id="screen"></div>
+			<Keyboard/>
+		</div>
+	</div>
 </main>
 
 <style>
@@ -21,11 +23,14 @@ AppCore.init();
 		width: 100%;
 		height: 100%;
 	}
-	#device {
-		background: #ffeb3b;
-		border-radius: 8px;
-		padding: 16px;
-		margin-top: 16px;
+	#device-io {
+		margin-top: 91px;
+		margin-left: 50px;
+	}
+	#phone {
+		width: 340px;
+		height: 1180px;
+		background: url('../nokia.svg');
 	}
 	#screen {
 		width: 240px;

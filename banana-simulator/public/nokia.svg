@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="340px" height="1180px" viewBox="0 0 340 1180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="296" height="315"></rect>
+        <rect id="path-2" x="7" y="0" width="282" height="300"></rect>
+        <filter x="-2.5%" y="-1.7%" width="105.0%" height="104.7%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.4 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M5.97830811,725.201618 C73.2185473,738.617263 123.892445,745.325086 158,745.325086 C192.107555,745.325086 242.781451,738.617263 310.021689,725.201618 C312.729739,724.66131 315.363052,726.418616 315.903357,729.126667 C315.967629,729.448803 316,729.77649 316,730.104976 L316,1108 C316,1137.27109 292.271092,1161 263,1161 L53,1161 C23.7289083,1161 3.58467488e-15,1137.27109 0,1108 L0,730.104973 C2.30203583e-06,727.34355 2.23857752,725.104975 5,725.104975 C5.32848556,725.104975 5.6561717,725.137346 5.97830811,725.201618 Z" id="path-4"></path>
+        <filter x="-1.9%" y="-1.1%" width="103.8%" height="102.5%" filterUnits="objectBoundingBox" id="filter-5">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.4 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M49,0 L259,0 C286.061953,-4.97120007e-15 308,21.9380473 308,49 L308,443.300921 C307.999995,448.080714 304.617471,452.192231 299.927289,453.113436 C235.821807,465.704479 187.179377,472 154,472 C120.820622,472 72.1781914,465.704479 8.07270741,453.113436 C3.38252515,452.192228 2.81798715e-14,448.08071 0,443.300915 L0,49 C-3.31413338e-15,21.9380473 21.9380473,4.97120007e-15 49,0 Z" id="path-6"></path>
+        <filter x="-2.3%" y="-1.1%" width="104.5%" height="103.0%" filterUnits="objectBoundingBox" id="filter-7">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.399284309 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-8" x="126" y="781" width="63" height="8" rx="4"></rect>
+        <filter x="-11.1%" y="-75.0%" width="122.2%" height="275.0%" filterUnits="objectBoundingBox" id="filter-9">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.19301792 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-5" transform="translate(12.000000, 10.000000)">
+            <g id="Group-2" transform="translate(10.000000, 447.000000)">
+                <g id="Rectangle">
+                    <use fill="#F7D700" xlink:href="#path-1"></use>
+                    <use fill-opacity="0.138002622" fill="#000000" xlink:href="#path-1"></use>
+                </g>
+                <g id="Rectangle">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                    <use fill="#F7D700" fill-rule="evenodd" xlink:href="#path-2"></use>
+                </g>
+                <path d="M31.5457324,17.229216 C31.3652182,17.2007211 31.1827494,17.186408 31,17.186408 C29.066998,17.186408 27.4999928,18.7534154 27.5,20.6864162 L27.5,253.690724 C27.5,255.372159 28.6956685,256.815989 30.3476381,257.129389 C82.4728,267.018309 121.694185,271.96202 148,271.96202 C174.305816,271.96202 213.527201,267.018309 265.652364,257.129389 C267.304324,256.815987 268.49999,255.372163 268.5,253.690735 L268.5,20.6864067 C268.5,20.5036581 268.485687,20.3211902 268.457192,20.1406767 C268.155794,18.2313269 266.363628,16.9278225 264.454276,17.2292146 C212.959114,25.3579252 174.144225,29.422802 148,29.422802 C121.855777,29.422802 83.04089,25.3579257 31.5457324,17.229216 Z" id="Rectangle" stroke="#000000" opacity="0.703633"></path>
+                <rect id="Rectangle" fill="#000000" opacity="0.796206" x="143" y="288" width="10" height="5" rx="2.5"></rect>
+            </g>
+            <g id="Rectangle">
+                <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
+                <use fill="#F7D700" fill-rule="evenodd" xlink:href="#path-4"></use>
+            </g>
+            <g id="Group-3" transform="translate(4.000000, 0.000000)">
+                <path d="M49,0 L259,0 C286.061953,-4.97120007e-15 308,21.9380473 308,49 L308,439.777465 C307.999998,444.562821 304.60978,448.677488 299.912781,449.592822 C235.814468,462.084071 187.176874,468.329695 154,468.329695 C120.823125,468.329695 72.1855307,462.084071 8.08721585,449.592821 C3.39021766,448.677485 5.86037102e-16,444.562819 0,439.777463 L0,49 C-3.31413338e-15,21.9380473 21.9380473,4.97120007e-15 49,0 Z" id="Rectangle" stroke="#F7D700" stroke-width="6" fill="#000000"></path>
+                <g id="Rectangle">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-7)" xlink:href="#path-6"></use>
+                    <use fill="#060606" fill-rule="evenodd" xlink:href="#path-6"></use>
+                </g>
+                <rect id="Rectangle" fill="#000000" x="34" y="81" width="240" height="320"></rect>
+                <rect id="Rectangle" stroke="#131313" stroke-width="3" fill="#090909" opacity="0.839750744" x="127.5" y="30.5" width="58" height="7" rx="3.5"></rect>
+                <path d="M120.70755,68.8399585 L117,68.8399585 L117,56.210175 L123.412175,56.210175 L130.768563,65.6391279 L130.768563,56.210175 L134.476112,56.210175 L134.476112,68.8399585 L128.193875,68.8399585 L120.70755,59.25 L120.70755,68.8399585 M152.214988,64.9343667 C152.214988,66.690003 151.905063,67.2954613 151.39205,67.8758529 C150.605688,68.7396915 149.461275,69 147.256188,69 L140.925825,69 C138.720737,69 137.5744,68.7396915 136.789,67.8758529 C136.275987,67.2954613 135.966062,66.690003 135.966062,64.9343667 L135.966062,60.0656333 C135.966062,58.3109611 136.275987,57.7064669 136.789,57.1251112 C137.575363,56.2603085 138.720737,56 140.925825,56 L147.256188,56 C149.461275,56 150.605688,56.2603085 151.39205,57.1251112 C151.905063,57.7064669 152.214988,58.3109611 152.214988,60.0656333 L152.214988,64.9343667 M147.100263,65.8001335 C147.947263,65.8001335 148.245638,65.75 148.448725,65.5648917 C148.638338,65.3923168 148.722075,65.1696084 148.722075,64.4272471 L148.722075,60.5727529 C148.722075,59.8303916 148.638338,59.6096114 148.448725,59.4360724 C148.245638,59.25 147.947263,59.2008306 147.100263,59.2008306 L141.080787,59.2008306 C140.233787,59.2008306 139.935412,59.25 139.733287,59.4360724 C139.542712,59.6096114 139.458975,59.8303916 139.458975,60.5727529 L139.458975,64.4272471 C139.458975,65.1696084 139.542712,65.3923168 139.733287,65.5648917 C139.935412,65.75 140.233787,65.8001335 141.080787,65.8001335 L147.100263,65.8001335 L147.100263,65.8001335 M157.603063,56.210175 L157.603063,68.8399585 L153.729,68.8399585 L153.729,56.210175 L157.603063,56.210175 M164.148063,56.210175 L169.262788,56.210175 L162.359737,62.1172501 L170.1454,68.8399585 L164.672625,68.8399585 L157.603063,62.253189 L164.148063,56.210175 M170.859575,56.210175 L174.7346,56.210175 L174.7346,68.8399585 L170.859575,68.8399585 M189.506088,68.8399585 L188.35975,66.6398695 L180.862838,66.6398695 L179.729975,68.8389944 L175.449737,68.8389944 L182.317175,56.210175 L187.133525,56.210175 L194,68.8399585 L189.506088,68.8399585 M182.209375,63.896989 L187.026687,63.896989 L184.61755,59.3242361 L182.209375,63.896989" id="Shape" fill="#D4D4D4" fill-rule="nonzero" opacity="0.792992001"></path>
+            </g>
+            <g id="Rectangle">
+                <use fill="black" fill-opacity="1" filter="url(#filter-9)" xlink:href="#path-8"></use>
+                <use stroke="#FFE32C" stroke-width="1" fill="#F7D700" fill-rule="evenodd" xlink:href="#path-8"></use>
+            </g>
+        </g>
+    </g>
+</svg>
