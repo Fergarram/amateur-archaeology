@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "name": "Banana Runner",
+  "description": "KaiOS app module runner.",
+  "type": "web",
+  "launch_path": "/index.html",
+  "fullscreen": "true",
+  "icons": {
+    "56": "/icons/bananarunner_56.png",
+    "112": "/icons/bananarunner_112.png",
+    "128": "/icons/bananarunner_128.png"
+  },
+  "developer": {
+    "name": "Fergarram",
+    "url": "https://fernando.works"
+  },
+  "locales": {
+    "en-US": {
+      "name": "Banana Runner",
+      "subtitle": "KaiOS app module runner.",
+      "description": "KaiOS app module runner."
+    }
+  },
+  "default_locale": "en-US"
+}

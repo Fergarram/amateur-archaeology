@@ -1,0 +1,22 @@
+{
+  "name": "banana-runner",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "dev": "nodemon --watch ../app-core --exec npm run build",
+    "start": "rm -rf ./build/ && parcel index.html --out-dir build --open && cp ./manifest.webapp ./build/ && cp -r ./assets/ ./build/ && cp -r ./../app-core/assets/ ./build/assets",
+    "build": "rm -rf ./build/ && parcel build index.html --out-dir build && cp ./manifest.webapp ./build/ && cp -r ./assets/ ./build/ && cp -r ./../app-core/assets/ ./build/assets",
+    "app:install": "kdeploy build install",
+    "app:uninstall": "kdeploy build uninstall",
+    "app:update": "kdeploy build update",
+    "app:start": "kdeploy build start",
+    "app:stop": "kdeploy build stop"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "7.2.0",
+    "kdeploy": "kaiostech/kdeploy",
+    "nodemon": "^2.0.2",
+    "parcel-bundler": "^1.12.4"
+  }
+}
