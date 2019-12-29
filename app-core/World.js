@@ -35,12 +35,6 @@ class World {
 		// Decorative tiles
 		CanvasHelper.drawAndScale(AssetLoader.images.ground, this.x, this.ground_y);
 		CanvasHelper.drawAndScale(AssetLoader.images.dirt, this.x + 800, this.ground_y);
-	};
-
-	restart() {
-    	this.sky_x = 0;
-    	this.x = 0;
-    	this.timePassed = 0;
 	}
 }
 

@@ -1,7 +1,8 @@
 import AssetLoader from './AssetLoader.js';
-import CanvasHelper from './CanvasHelper.js'
+import CanvasHelper from './CanvasHelper.js';
 import Grid from './Grid.js';
-import World from './World.js'
+import World from './World.js';
+import Player from './Player.js';
 
 class AppCore {
 
@@ -36,11 +37,13 @@ class AppCore {
 	update(delta) {
 		World.update(delta)
 		Grid.update(delta);
+		Player.update(delta);
 	}
 
 	draw() {
 		World.draw(CanvasHelper, AssetLoader);
 		Grid.draw(World, CanvasHelper, AssetLoader);
+		Player.draw(World, CanvasHelper, AssetLoader)
 	}
 
 	keyboardEventHandler(event) {
@@ -48,8 +51,10 @@ class AppCore {
 	    console.log('Key: ' + event.key);
 
 	    if (event.key === 'Backspace') {
-		    World.restart(); 	
+		    location.reload();
 	    }
+
+	    Player.onKeyDown(event.key);
 	}
 }
 

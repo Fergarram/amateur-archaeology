@@ -40,6 +40,7 @@ class Grid {
 
 			} else if (this.gridList[i].type === 'air') {
 				CanvasHelper.drawRect('#B8C4D4', x, y, 32, 32);
+
 			} else {
 				CanvasHelper.drawRect('#FF0000', x, y, 32, 32);
 			}
