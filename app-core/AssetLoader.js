@@ -1,6 +1,5 @@
 class AssetLoader {
 	constructor() {
-		this.eventTarget = document.createElement('div'); // Workaround for KaiOS issue.
 		this.images = {};
 		this.imageFiles = {
 			dig: 'assets/dig.png',
@@ -10,6 +9,7 @@ class AssetLoader {
 			move: 'assets/move.png',
 			scorpion: 'assets/scorpion.png',
 			sky: 'assets/sky.png',
+			ground: 'assets/ground.png',
 			treasure0: 'assets/treasure0.png',
 			treasure1: 'assets/treasure1.png',
 			treasure2: 'assets/treasure2.png',
@@ -26,7 +26,7 @@ class AssetLoader {
 		// this.loadSounds();
 		
 		let imagesLoaded = new Promise((resolve, reject) => {
-			this.eventTarget.addEventListener('allimagesloaded', () => resolve());
+			document.addEventListener('allimagesloaded', () => resolve());
 		});
 		let soundsLoaded = Promise.resolve('NONE'); // TEMP
 		
@@ -44,12 +44,11 @@ class AssetLoader {
 			    loadedImageCount += 1;
 			    if (loadedImageCount === noImages) {
 			    	// Finished loading all of them!
-			    	this.eventTarget.dispatchEvent(new Event('allimagesloaded'));
+			    	document.dispatchEvent(new Event('allimagesloaded'));
 			    }
 			}
 		}
 	}	
 }
 
-const loader = new AssetLoader();
-export default loader;
+export default new AssetLoader();
