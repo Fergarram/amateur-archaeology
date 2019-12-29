@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="64px" viewBox="0 0 120 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
+    <title>Call</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.312104725">
+        <g id="Artboard" transform="translate(-50.000000, -528.000000)" fill="#F70000">
+            <g id="Button-Masks" transform="translate(50.000000, 474.000000)">
+                <path d="M79,81 C79,95.3594035 90.6405965,107 105,107 L120,107 L120,117.494039 C93.445484,117.429814 52.7788173,114.265134 0,104 L0,54 C30.7981537,59.2506488 57.1314871,62.9789205 79,65.1848149 L79,81 Z" id="Call"></path>
+            </g>
+        </g>
+    </g>
+</svg>

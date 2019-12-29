@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="62px" viewBox="0 0 16 62" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
+    <title>ArrowRight</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.312104725">
+        <g id="Artboard" transform="translate(-196.000000, -510.000000)" fill="#FF0000">
+            <g id="Button-Masks" transform="translate(50.000000, 474.000000)">
+                <path d="M147.582802,44.8314119 L156.459716,35.954498 C159.930273,40.3736573 162,45.9451234 162,52 L162,81 C162,87.3103758 159.751914,93.0956829 156.012939,97.5987253 L146.74521,88.3309966 C148.782658,85.7698142 150,82.5270698 150,79 L150,53 C150,49.9871399 149.111735,47.1817451 147.582802,44.8314119 L147.582802,44.8314119 Z" id="ArrowRight"></path>
+            </g>
+        </g>
+    </g>
+</svg>

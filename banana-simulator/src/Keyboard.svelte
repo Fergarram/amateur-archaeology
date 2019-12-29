@@ -3,61 +3,33 @@
 </script>
 
 <div id="keyboard">
-	<div class="row controls">
-		<div class="col">
-			<KeyButton key="SoftLeft" text="—" />
-			<KeyButton key="Call" text="[" />
-		</div>
-		<div class="col">
-			<KeyButton key="Arrowup" text="up" />
-			<div class="row">
-				<KeyButton key="ArrowLeft" text="left" />
-				<KeyButton key="Enter" text="ok" />
-				<KeyButton key="ArrowRight" text="right" />
-			</div>
-			<KeyButton key="ArrowDown" text="down" />
-		</div>
-		<div class="col">
-			<KeyButton key="SoftRight" text="—" />
-			<KeyButton key="Backspace" text="]" />
-		</div>
-	</div>
-	<div class="row">
-		<KeyButton key="1" text="1" />
-		<KeyButton key="2" text="2" />
-		<KeyButton key="3" text="3" />
-	</div>
-	<div class="row">
-		<KeyButton key="4" text="4" />
-		<KeyButton key="5" text="5" />
-		<KeyButton key="6" text="6" />
-	</div>
-	<div class="row">
-		<KeyButton key="7" text="7" />
-		<KeyButton key="8" text="8" />
-		<KeyButton key="9" text="9" />
-	</div>
-	<div class="row">
-		<KeyButton key="*" text="*" />
-		<KeyButton key="0" text="0" />
-		<KeyButton key="#" text="#" />
-	</div>
+	<KeyButton style="left: 0;" key="SoftLeft" />
+	<KeyButton style="left: 121px;" key="SoftRight" />
+	<KeyButton style="left: 0px; top: 54px" key="Call" />
+	<KeyButton style="left: 121px; top: 54px" key="Backspace" />
+	<KeyButton style="left: 88px; top: 26px" key="Arrowup" />
+	<KeyButton style="left: 79px; top: 33px" key="ArrowLeft" />
+	<KeyButton style="left: 92px; top: 38px" key="Enter" />
+	<KeyButton style="left: 146px; top: 36px" key="ArrowRight" />
+	<KeyButton style="left: 89px; top: 89px" key="ArrowDown" />
+	<KeyButton style="left: 0px; top: 104px" key="1" />
+	<KeyButton style="left: 80px; top: 116px" key="2" />
+	<KeyButton style="left: 160px; top: 104px" key="3" />
+	<KeyButton style="left: 0px; top: 140px" key="4" />
+	<KeyButton style="left: 80px; top: 151px" key="5" />
+	<KeyButton style="left: 160px; top: 140px" key="6" />
+	<KeyButton style="left: 0px; top: 174px" key="7" />
+	<KeyButton style="left: 80px; top: 185px" key="8" />
+	<KeyButton style="left: 160px; top: 174px" key="9" />
+	<KeyButton style="left: 0px; top: 208px" key="*" />
+	<KeyButton style="left: 80px; top: 219px" key="0" />
+	<KeyButton style="left: 160px; top: 208px" key="#" />
 </div>
 
 <style>
 	#keyboard {
 		width: 240px;
-		margin-top: 74px;
-	}
-	.controls {
-		margin-bottom: 8px;
-	}
-	.row {
-		display: flex;
-		justify-content: space-between;
-		width: 100%;
-	}
-	.nav-controls {
-		height: 100px;
+		margin-top: 63px;
+		position: absolute;
 	}
 </style>

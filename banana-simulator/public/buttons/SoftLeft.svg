@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="65px" viewBox="0 0 120 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
+    <title>SoftLeft</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.312104725">
+        <g id="Artboard" transform="translate(-50.000000, -474.000000)" fill="#F70000">
+            <g id="Button-Masks" transform="translate(50.000000, 474.000000)">
+                <path d="M0,53 L0,5.68434189e-14 C52.7788178,8.99804063 93.4454848,13.5252094 120,13.5815062 L120,26 L105,26 C90.6405965,26 79,37.6405965 79,52 L79,64.5115818 C57.131487,62.5623015 30.7981536,58.9900392 0,53 Z" id="SoftLeft"></path>
+            </g>
+        </g>
+    </g>
+</svg>

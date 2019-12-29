@@ -1,6 +1,10 @@
 <script>
 	export let key;
-	export let text;
+	export let style;
+
+	let keyName = key;
+	if (keyName === '*') keyName = 'asterisk';
+	if (keyName === '#') keyName = 'hash';
 
 	const simulateKeydown = () => {
 		const e = new CustomEvent("keydown");
@@ -8,13 +12,25 @@
 		document.dispatchEvent(e);
 	};
 </script>
-
-<button on:click={simulateKeydown}>{text}</button>
+<button style={style} on:click={simulateKeydown}>
+	<img src={`buttons/${keyName}.svg`} alt={key}>
+</button>
 
 <style>
 	button {
-		width: 100%;
+		opacity: 0.0;
+		position: absolute;
+		background: none;
+		outline: none;
+		border: none;
 		margin: 0;
-		height: 32px;
+		padding: 0;
+	}
+	button:hover {
+		opacity: 0.25;
+		cursor: pointer;
+	}
+	button:active {
+		opacity: 0.5;
 	}
 </style>

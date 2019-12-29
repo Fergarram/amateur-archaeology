@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="66px" height="18px" viewBox="0 0 66 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
+    <title>ArrowDown</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.312104725">
+        <g id="Artboard" transform="translate(-139.000000, -563.000000)" fill="#FF0000">
+            <g id="Button-Masks" transform="translate(50.000000, 474.000000)">
+                <path d="M88.954498,101.459716 L98.8314119,91.5828017 C101.181745,93.1117352 103.98714,94 107,94 L135,94 C139.036785,94 142.701129,92.4053849 145.397485,89.8116989 L154.675351,99.0895644 C149.94917,103.967822 143.328687,107 136,107 L105,107 C98.9451234,107 93.3736573,104.930273 88.954498,101.459716 Z" id="ArrowDown"></path>
+            </g>
+        </g>
+    </g>
+</svg>
