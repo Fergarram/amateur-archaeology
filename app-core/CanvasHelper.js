@@ -52,6 +52,13 @@ class CanvasHelper {
 	    animate();
 	}
 
+	drawRect(color, x, y, w, h) {
+		this.ctx.save();
+		this.ctx.fillStyle = color;
+		this.ctx.fillRect(x, y, w, h);
+		this.ctx.restore();
+	}
+
 	drawAndScale(image, x, y) {
 		this.ctx.drawImage(image, x, y, image.width*2, image.height*2);
 	}

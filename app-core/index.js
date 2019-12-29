@@ -18,6 +18,14 @@ class AppCore {
 
 				// Randomize the grid
 				Grid.addBlock(0, 0, 'dirt');
+				Grid.addBlock(1, 0, 'dirt');
+				Grid.addBlock(2, 0, 'dirt');
+				Grid.addBlock(3, 0, 'air');
+				Grid.addBlock(4, 0, 'dirt');
+				Grid.addBlock(5, 0, 'dirt');
+				Grid.addBlock(6, 0, 'dirt');
+				Grid.addBlock(3, 1, 'dirt');
+
 
 				// Start the main loop
 				CanvasHelper.loop(this.update, this.draw);

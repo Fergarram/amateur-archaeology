@@ -1,7 +1,7 @@
 class Grid {
 
 	constructor() {
-		this.global_x = 568;
+		this.global_x = 576;
 		this.global_y = 192;
 		this.gridList = [];
 		this.timePassed = 0; // Milliseconds
@@ -10,15 +10,14 @@ class Grid {
 	addBlock(x, y, type) {
 		// TYPES:
 		// 1. air
-		// 2. black
-		// 3. treasure
-		// 4. foe
-		// 5. dirt
+		// 2. dirt
+		// 3. foe
+		// 4. treasure
 
 		this.gridList.push({
 			type: type,
-			x: 0,
-			y: 0
+			x: x,
+			y: y
 		});
 	}
 
@@ -32,11 +31,18 @@ class Grid {
 			return;
 
 		for (var i = 0; i < this.gridList.length; i++) {
-			
+
 			const x = World.x + this.global_x + this.gridList[i].x * 32;
 			const y = World.y + this.global_y + this.gridList[i].y * 32;
 
-			CanvasHelper.drawAndScale(AssetLoader.images.dirt, x, y);
+			if (this.gridList[i].type === 'dirt') {
+				CanvasHelper.drawAndScale(AssetLoader.images.dirt, x, y);
+
+			} else if (this.gridList[i].type === 'air') {
+				CanvasHelper.drawRect('#B8C4D4', x, y, 32, 32);
+			} else {
+				CanvasHelper.drawRect('#FF0000', x, y, 32, 32);
+			}
 		}
 	}
 }
