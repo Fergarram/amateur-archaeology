@@ -5,7 +5,6 @@ class CanvasHelper {
 		this.canvas = null;
 		this.assets = null;
 		this.ctx = null;
-		this.showFPS = false;
 	}
 
 	init(AssetLoader) {
@@ -38,7 +37,7 @@ class CanvasHelper {
 			render();
 
 			// Draw FPS
-			if (this.showFPS) {
+			if (window.DEBUG) {
 				this.ctx.fillStyle = "white";
 				this.ctx.font = "12px Arial";
 				this.ctx.fillText(`FPS: ${fps}`, 16, this.canvas.height - 16);
@@ -50,6 +49,18 @@ class CanvasHelper {
 
 		// Start the rendering loop
 	    animate();
+	}
+
+	drawText(text, x, y, color='#FFFFFF', background="#FF0000") {
+		this.ctx.save();
+		this.ctx.font = "12px Arial";
+		const width = this.ctx.measureText(text).width;
+		this.ctx.textBaseline = 'top';
+		this.ctx.fillStyle = background;
+		this.ctx.fillRect(x, y, width, 12);
+		this.ctx.fillStyle = color;
+		this.ctx.fillText(text, x, y);
+		this.ctx.restore();
 	}
 
 	drawRect(color, x, y, w, h) {

@@ -12,7 +12,6 @@ class AppCore {
 
 				// Initialize canvas helper
 				CanvasHelper.init(AssetLoader);
-				CanvasHelper.showFPS = true;
 
 				// Initialize keyboard event handler
 				document.addEventListener('keydown', this.keyboardEventHandler);
@@ -22,10 +21,24 @@ class AppCore {
 				Grid.addBlock(1, 0, 'dirt');
 				Grid.addBlock(2, 0, 'dirt');
 				Grid.addBlock(3, 0, 'air');
-				Grid.addBlock(4, 0, 'dirt');
-				Grid.addBlock(5, 0, 'dirt');
-				Grid.addBlock(6, 0, 'dirt');
 				Grid.addBlock(3, 1, 'dirt');
+				Grid.addBlock(4, 0, 'air');
+				Grid.addBlock(4, 1, 'air');
+				Grid.addBlock(4, 2, 'dirt');
+				Grid.addBlock(5, 0, 'dirt');
+				Grid.addBlock(5, 1, 'dirt');
+				Grid.addBlock(6, 0, 'dirt');
+
+				// Initialing world
+				Player.world = World;
+				Player.grid = Grid;
+				Grid.world = World;
+
+				// Debugging...
+				// @TODO: if !_PROD_ then be able to toggle debug.
+				window.DEBUG = true;
+				window.Grid = Grid;
+				window.Player = Player;
 
 
 				// Start the main loop
@@ -42,22 +55,26 @@ class AppCore {
 
 	draw() {
 		World.draw(CanvasHelper);
-		Grid.draw(CanvasHelper, World);
-		Player.draw(CanvasHelper, World);
+		Grid.draw(CanvasHelper);
+		Player.draw(CanvasHelper);
 	}
 
 	keyboardEventHandler(event) {
 		event.preventDefault();
-	    console.log('Key: ' + event.key);
+
+		// @TODO: if !_PROD_ then be able to toggle debug.
+		if (event.key === '*') {
+	    	window.DEBUG = !window.DEBUG;
+	    }
+
+		if (window.DEBUG) {
+		    console.log('Key: ' + event.key);
+		}
 
 	    if (event.key === 'Backspace') {
 		    location.reload();
 	    }
 
-	    // @NOTE: So, for some reason if I create a separate event listener
-	    //        inside the Player class it doesn't work.
-	    //        Maybe that is because I need to add the event listener after 
-	    //        the initial laoding and initializing and not in the constructor.
 	    Player.onKeyDown(event.key);
 	}
 }
