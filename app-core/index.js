@@ -54,6 +54,10 @@ class AppCore {
 		    location.reload();
 	    }
 
+	    // @NOTE: So, for some reason if I create a separate event listener
+	    //        inside the Player class it doesn't work.
+	    //        Maybe that is because I need to add the event listener after 
+	    //        the initial laoding and initializing and not in the constructor.
 	    Player.onKeyDown(event.key);
 	}
 }

@@ -1,7 +1,7 @@
 import { easeInOutQuint } from './Utilities.js'
 
 class World {
-	
+
 	constructor() {
 		this.sky_x = 0;
 		this.skyDistance = 240;
@@ -9,7 +9,7 @@ class World {
 		this.ground_y = 192;
 		this.x = 0;
 		this.y = 0;
-		this.timePassed = 0; // Miliseconds
+		this.timePassed = 0; // Milliseconds
 	}
 
 	update(delta) {
@@ -28,10 +28,10 @@ class World {
 	}
 
 	draw(CanvasHelper, AssetLoader) {
-		
+
 		// Sky
 		CanvasHelper.drawAndScale(AssetLoader.images.sky, this.sky_x, 0);
-		
+
 		// Decorative tiles
 		CanvasHelper.drawAndScale(AssetLoader.images.ground, this.x, this.ground_y);
 		CanvasHelper.drawAndScale(AssetLoader.images.dirt, this.x + 800, this.ground_y);

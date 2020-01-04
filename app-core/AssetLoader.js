@@ -6,6 +6,7 @@ class AssetLoader {
 			dirt: 'assets/dirt.png',
 			fire: 'assets/fire.png',
 			idle: 'assets/idle.png',
+			idle_left: 'assets/idle_left.png',
 			move: 'assets/move.png',
 			scorpion: 'assets/scorpion.png',
 			sky: 'assets/sky.png',
@@ -24,12 +25,12 @@ class AssetLoader {
 	load() {
 		this.loadImages();
 		// this.loadSounds();
-		
+
 		let imagesLoaded = new Promise((resolve, reject) => {
 			document.addEventListener('allimagesloaded', () => resolve());
 		});
 		let soundsLoaded = Promise.resolve('NONE'); // TEMP
-		
+
 		return Promise.all([imagesLoaded, soundsLoaded]);
 	}
 
@@ -48,7 +49,7 @@ class AssetLoader {
 			    }
 			}
 		}
-	}	
+	}
 }
 
 export default new AssetLoader();

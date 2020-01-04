@@ -26,7 +26,7 @@ class Grid {
 	}
 
 	draw(World, CanvasHelper, AssetLoader) {
-		
+
 		if (this.gridList.length < 1)
 			return;
 

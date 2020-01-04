@@ -32,9 +32,7 @@ class CanvasHelper {
 		    fps = parseInt(1000/delta);
 
 			update(delta);
-			
-			this.clear();
-			
+			this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 			render();
 
 			// Draw FPS
@@ -61,10 +59,6 @@ class CanvasHelper {
 
 	drawAndScale(image, x, y) {
 		this.ctx.drawImage(image, x, y, image.width*2, image.height*2);
-	}
-
-	clear() {
-		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 	}
 }
 
