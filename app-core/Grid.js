@@ -25,7 +25,7 @@ class Grid {
 
 	}
 
-	draw(World, CanvasHelper, AssetLoader) {
+	draw(CanvasHelper, World) {
 
 		if (this.gridList.length < 1)
 			return;
@@ -36,7 +36,7 @@ class Grid {
 			const y = World.y + this.global_y + this.gridList[i].y * 32;
 
 			if (this.gridList[i].type === 'dirt') {
-				CanvasHelper.drawAndScale(AssetLoader.images.dirt, x, y);
+				CanvasHelper.drawImage('dirt', x, y);
 
 			} else if (this.gridList[i].type === 'air') {
 				CanvasHelper.drawRect('#B8C4D4', x, y, 32, 32);

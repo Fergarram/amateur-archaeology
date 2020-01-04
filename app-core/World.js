@@ -27,14 +27,14 @@ class World {
 		}
 	}
 
-	draw(CanvasHelper, AssetLoader) {
+	draw(CanvasHelper) {
 
 		// Sky
-		CanvasHelper.drawAndScale(AssetLoader.images.sky, this.sky_x, 0);
+		CanvasHelper.drawImage('sky', this.sky_x, 0);
 
 		// Decorative tiles
-		CanvasHelper.drawAndScale(AssetLoader.images.ground, this.x, this.ground_y);
-		CanvasHelper.drawAndScale(AssetLoader.images.dirt, this.x + 800, this.ground_y);
+		CanvasHelper.drawImage('ground', this.x, this.ground_y);
+		CanvasHelper.drawImage('dirt', this.x + 800, this.ground_y);
 	}
 }
 

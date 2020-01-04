@@ -2,12 +2,13 @@ class AssetLoader {
 	constructor() {
 		this.images = {};
 		this.imageFiles = {
-			dig: 'assets/dig.png',
+			dig_right: 'assets/dig.png',
+			idle_right: 'assets/idle.png',
+			move_right: 'assets/move.png',
+			move_left: 'assets/move_left.png',
+			idle_left: 'assets/idle_left.png',
 			dirt: 'assets/dirt.png',
 			fire: 'assets/fire.png',
-			idle: 'assets/idle.png',
-			idle_left: 'assets/idle_left.png',
-			move: 'assets/move.png',
 			scorpion: 'assets/scorpion.png',
 			sky: 'assets/sky.png',
 			ground: 'assets/ground.png',

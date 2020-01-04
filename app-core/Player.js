@@ -14,9 +14,10 @@ class Player {
 		this.dy = this.y;
 		this.movingTime = 0; // Milliseconds
 		this.dir = 'right';
-		this.speed = 0.5 // Seconds - More means slower
+		this.speed = 0.5 // Seconds? - More means slower
 		this.isMoving = false;
 		this.lastKeyPressed = false;
+		this.sprite = 'idle';
 	}
 
 	init() {
@@ -30,6 +31,7 @@ class Player {
 
 			if (this.x < this.dx) {
 				this.isMoving = true;
+				this.sprite = 'move';
 				this.movingTime += delta;
 				this.x += easeLinear(this.movingTime / 1000, 0, this.grid_size, this.speed);
 			}
@@ -38,6 +40,7 @@ class Player {
 				this.x = this.dx;
 				this.movingTime = 0;
 				this.isMoving = false;
+				this.sprite = 'idle';
 				
 				if (this.lastKeyPressed === 'left') {
 					this.dir = 'left';
@@ -49,6 +52,7 @@ class Player {
 			
 			if (this.x > this.dx) {
 				this.isMoving = true;
+				this.sprite = 'move';
 				this.movingTime += delta;
 				this.x -= easeLinear(this.movingTime / 1000, 0, this.grid_size, this.speed);
 			
@@ -58,6 +62,7 @@ class Player {
 				this.x = this.dx;
 				this.movingTime = 0;
 				this.isMoving = false;
+				this.sprite = 'idle';
 
 				if (this.lastKeyPressed === 'right') {
 					this.dir = 'right';
@@ -65,13 +70,12 @@ class Player {
 			}
 		}
 
+		// Update sprite
+		this.currentImage = `${this.sprite}_${this.dir}`;
 	}
 
-	draw(World, CanvasHelper, AssetLoader) {
-		if (this.dir === 'left')
-			CanvasHelper.drawAndScale(AssetLoader.images.idle_left, World.x + this.x, World.y + this.y);
-		else
-			CanvasHelper.drawAndScale(AssetLoader.images.idle, World.x + this.x, World.y + this.y);
+	draw(CanvasHelper, World) {
+		CanvasHelper.drawImage(this.currentImage, World.x + this.x, World.y + this.y);
 	}
 
 	onKeyDown(key) {

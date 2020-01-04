@@ -11,7 +11,7 @@ class AppCore {
 			AssetLoader.load().then(() => {
 
 				// Initialize canvas helper
-				CanvasHelper.init();
+				CanvasHelper.init(AssetLoader);
 				CanvasHelper.showFPS = true;
 
 				// Initialize keyboard event handler
@@ -35,15 +35,15 @@ class AppCore {
 	}
 
 	update(delta) {
-		World.update(delta)
+		World.update(delta);
 		Grid.update(delta);
 		Player.update(delta);
 	}
 
 	draw() {
-		World.draw(CanvasHelper, AssetLoader);
-		Grid.draw(World, CanvasHelper, AssetLoader);
-		Player.draw(World, CanvasHelper, AssetLoader)
+		World.draw(CanvasHelper);
+		Grid.draw(CanvasHelper, World);
+		Player.draw(CanvasHelper, World);
 	}
 
 	keyboardEventHandler(event) {

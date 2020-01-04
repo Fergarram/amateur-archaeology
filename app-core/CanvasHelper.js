@@ -3,11 +3,12 @@ class CanvasHelper {
 	constructor() {
 		this.screen = null;
 		this.canvas = null;
+		this.assets = null;
 		this.ctx = null;
 		this.showFPS = false;
 	}
 
-	init() {
+	init(AssetLoader) {
 		this.screen = document.getElementById('screen');
 		this.canvas = document.createElement('canvas');
 		this.canvas.id = 'MainCanvas';
@@ -21,6 +22,7 @@ class CanvasHelper {
 		this.ctx.imageSmoothingEnabled = false;
 		this.ctx.mozImageSmoothingEnabled = false;
 		this.ctx.webkitImageSmoothingEnabled = false;
+		this.assets = AssetLoader;
 	}
 
 	loop(update, render) {
@@ -57,8 +59,10 @@ class CanvasHelper {
 		this.ctx.restore();
 	}
 
-	drawAndScale(image, x, y) {
-		this.ctx.drawImage(image, x, y, image.width*2, image.height*2);
+	drawImage(imageName, x, y, s=2) {
+		this.ctx.drawImage(this.assets.images[imageName], x, y,
+						   this.assets.images[imageName].width*s,
+						   this.assets.images[imageName].height*s);
 	}
 }
 
