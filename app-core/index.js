@@ -22,11 +22,8 @@ class AppCore {
 				Grid.addBlock(2, 0, 'dirt');
 				Grid.addBlock(3, 0, 'air');
 				Grid.addBlock(3, 1, 'dirt');
-				Grid.addBlock(4, 0, 'air');
-				Grid.addBlock(4, 1, 'air');
-				Grid.addBlock(4, 2, 'dirt');
+				Grid.addBlock(4, 0, 'dirt');
 				Grid.addBlock(5, 0, 'dirt');
-				Grid.addBlock(5, 1, 'dirt');
 				Grid.addBlock(6, 0, 'dirt');
 
 				// Initialing world
@@ -51,7 +48,6 @@ class AppCore {
 
 	update(delta) {
 		World.update(delta);
-		Grid.update(delta);
 		Player.update(delta);
 	}
 

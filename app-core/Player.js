@@ -152,12 +152,54 @@ class Player {
 
 		// Dig straight
 		if (key === '5' || key === 'Enter') {
+			this.assets.playSound('dig');
+			this.sprite = 'dig';
 
+			const dirtAtRight = this.grid.getBlockType(this.grid_x + 1, this.grid_y) === 'dirt';
+			const dirtAtLeft = this.grid.getBlockType(this.grid_x - 1, this.grid_y) === 'dirt';
+
+			if (this.dir === 'right' && dirtAtRight) {
+				this.grid.setBlock(this.grid_x + 1, this.grid_y, 'air');
+			}
+
+			if (this.dir === 'left' && dirtAtLeft) {
+				this.grid.setBlock(this.grid_x - 1, this.grid_y, 'air');
+			}
+
+			setTimeout(() => this.sprite = 'idle', 150);
 		}
 
 		// Dig down
 		if (key === '8' || key === 'ArrowDown') {
+			this.assets.playSound('dig');
+			this.sprite = 'dig';
 
+			const dirtAtRight = this.grid.getBlockType(this.grid_x + 1, this.grid_y) === 'dirt';
+			const dirtAtLeft = this.grid.getBlockType(this.grid_x - 1, this.grid_y) === 'dirt';
+			const dirtAtBottomRight = this.grid.getBlockType(this.grid_x + 1, this.grid_y + 1) === 'dirt' ||
+									  this.grid.getBlockType(this.grid_x + 1, this.grid_y + 1) === 'empty';
+			const dirtAtBottomLeft = this.grid.getBlockType(this.grid_x - 1, this.grid_y + 1) === 'dirt' ||
+									 this.grid.getBlockType(this.grid_x - 1, this.grid_y + 1) === 'empty';
+
+			if (this.dir === 'right') {
+				if (dirtAtRight) {
+					this.grid.setBlock(this.grid_x + 1, this.grid_y, 'air');
+				}
+				if (dirtAtBottomRight) {
+					this.grid.setBlock(this.grid_x + 1, this.grid_y + 1, 'air');
+				}
+			}
+
+			if (this.dir === 'left') {
+				if (dirtAtLeft) {
+					this.grid.setBlock(this.grid_x - 1, this.grid_y, 'air');
+				}
+				if (dirtAtBottomLeft) {
+					this.grid.setBlock(this.grid_x - 1, this.grid_y + 1, 'air');
+				}
+			}
+
+			setTimeout(() => this.sprite = 'idle', 150);
 		}
 	}
 

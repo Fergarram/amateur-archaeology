@@ -11,9 +11,13 @@ class Grid {
 		// 2. dirt
 		// 3. foe
 		// 4. treasure
+		// 5. empty
+		// 6. null
+		// 7. hard
 	}
 
 	addBlock(x, y, type) {
+		if (x < 0 || x > 6) type = 'hard';
 		this.gridList.push({
 			type: type,
 			x: x,
@@ -22,13 +26,17 @@ class Grid {
 	}
 
 	getBlockType(x, y) {
+
+		if (y < 0)
+			return null;
+
 		for (var i = 0; i < this.gridList.length; i++) {
 			if (this.gridList[i].x === x && this.gridList[i].y === y) {
 				return this.gridList[i].type;
 			}
 		}
 
-		return null;
+		return 'empty';
 	}
 
 	setBlock(x, y, type) {
@@ -39,17 +47,18 @@ class Grid {
 					x: x,
 					y: y
 				};
-				break;
 
-			} else {
-				this.addBlock(x, y, type);
-				break;
+				// Check if surrounding empty blocks need replacement
+				if (this.getBlockType(x, y + 1) === 'empty') this.addBlock(x, y + 1, 'dirt');
+				if (this.getBlockType(x, y - 1) === 'empty') this.addBlock(x, y - 1, 'dirt');
+				if (this.getBlockType(x + 1, y) === 'empty') this.addBlock(x + 1, y, 'dirt');
+				if (this.getBlockType(x - 1, y) === 'empty') this.addBlock(x - 1, y, 'dirt');
+
+				return;
 			}
 		}
-	}
 
-	update(delta) {
-
+		this.addBlock(x, y, type);
 	}
 
 	draw(CanvasHelper) {
@@ -62,7 +71,7 @@ class Grid {
 			const x = this.world.x + this.global_x + this.gridList[i].x * 32;
 			const y = this.world.y + this.global_y + this.gridList[i].y * 32;
 
-			if (this.gridList[i].type === 'dirt') {
+			if (this.gridList[i].type === 'dirt' || this.gridList[i].type === 'hard') {
 				CanvasHelper.drawImage('dirt', x, y);
 
 			} else if (this.gridList[i].type === 'air') {
