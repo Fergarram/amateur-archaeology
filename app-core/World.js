@@ -31,6 +31,7 @@ class World {
 
 		// Sky
 		CanvasHelper.drawImage('sky', this.sky_x, 0);
+		CanvasHelper.drawImage('dithering', 0, 0);
 
 		// Decorative tiles
 		CanvasHelper.drawImage('ground', this.x, this.ground_y);

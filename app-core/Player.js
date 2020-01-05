@@ -4,9 +4,10 @@ class Player {
 
 	constructor() {
 		this.world = null;
+		this.assets = null;
 		this.grid = null;
-		this.grid_x = 3;
-		this.grid_y = 0;
+		this.grid_x = 2;
+		this.grid_y = -1;
 		this.grid_size = 32;
 		this.grid_startx = 576;
 		this.grid_starty = 192;
@@ -38,6 +39,7 @@ class Player {
 			this.movingTime = 0;
 			this.isFalling = false;
 			this.sprite = 'idle';
+			this.assets.playSound('step');
 			this.calculateGridPosition();
 		}
 
@@ -108,19 +110,20 @@ class Player {
 		if (key === '4' || key === 'ArrowLeft') {
 			this.lastKeyPressed = 'left';
 
-			const canMoveLeft = this.grid.getBlockType(this.grid_x - 1, this.grid_y) === 'air';
+			const canMoveLeft = this.grid.getBlockType(this.grid_x - 1, this.grid_y) === 'air' ||
+								this.grid.getBlockType(this.grid_x - 1, this.grid_y) === null;
+
+			if (canMoveLeft) {
+				this.assets.playSound('step');
+			}
 
 			if (!this.isMoving && !this.isFalling && canMoveLeft) {
 				this.dir = 'left';
 				this.movingTime = 0;
-				this.dx = this.x - this.grid_size;
+				this.dx = this.x - this.grid_size
 			}
 
-			if (!canMoveLeft) {
-				this.dir = 'left';
-			}
-
-			if (this.isFalling) {
+			if (!canMoveLeft || this.isFalling) {
 				this.dir = 'left';
 			}
 		}
@@ -129,7 +132,12 @@ class Player {
 		if (key === '6' || key === 'ArrowRight') {
 			this.lastKeyPressed = 'right';
 
-			const canMoveRight = this.grid.getBlockType(this.grid_x + 1, this.grid_y) === 'air';
+			const canMoveRight = this.grid.getBlockType(this.grid_x + 1, this.grid_y) === 'air' ||
+								 this.grid.getBlockType(this.grid_x + 1, this.grid_y) === null;
+
+			if (canMoveRight) {
+				this.assets.playSound('step');
+			}
 
 			if (!this.isMoving && !this.isFalling && canMoveRight) {
 				this.dir = 'right';
@@ -137,11 +145,7 @@ class Player {
 				this.dx = this.x + this.grid_size;
 			}
 
-			if (!canMoveRight) {
-				this.dir = 'right';
-			}
-
-			if (this.isFalling) {
+			if (!canMoveRight || this.isFalling) {
 				this.dir = 'right';
 			}
 		}

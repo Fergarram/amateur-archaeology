@@ -30,6 +30,7 @@ class AppCore {
 				Grid.addBlock(6, 0, 'dirt');
 
 				// Initialing world
+				Player.assets = AssetLoader;
 				Player.world = World;
 				Player.grid = Grid;
 				Grid.world = World;
@@ -39,6 +40,7 @@ class AppCore {
 				window.DEBUG = true;
 				window.Grid = Grid;
 				window.Player = Player;
+				window.AssetLoader = AssetLoader;
 
 
 				// Start the main loop
@@ -62,8 +64,10 @@ class AppCore {
 	keyboardEventHandler(event) {
 		event.preventDefault();
 
+	    Player.onKeyDown(event.key);
+
 		// @TODO: if !_PROD_ then be able to toggle debug.
-		if (event.key === '*') {
+		if (event.key === '*' || event.key === 'Control') {
 	    	window.DEBUG = !window.DEBUG;
 	    }
 
@@ -75,7 +79,14 @@ class AppCore {
 		    location.reload();
 	    }
 
-	    Player.onKeyDown(event.key);
+	    if (event.key === '1') {
+	    	AssetLoader.turnVolumeDown();
+	    }
+
+	    if (event.key === '3') {
+	    	AssetLoader.turnVolumeUp();
+	    }
+
 	}
 }
 

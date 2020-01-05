@@ -1,6 +1,7 @@
 class AssetLoader {
 	constructor() {
 		this.images = {};
+		this.sounds = {};
 		this.imageFiles = {
 			dig_right: 'assets/dig.png',
 			idle_right: 'assets/idle.png',
@@ -11,6 +12,7 @@ class AssetLoader {
 			fire: 'assets/fire.png',
 			scorpion: 'assets/scorpion.png',
 			sky: 'assets/sky.png',
+			dithering: 'assets/dithering.png',
 			ground: 'assets/ground.png',
 			treasure0: 'assets/treasure0.png',
 			treasure1: 'assets/treasure1.png',
@@ -20,19 +22,61 @@ class AssetLoader {
 			treasure5: 'assets/treasure5.png',
 			treasure6: 'assets/treasure6.png'
 		};
-		this.soundsFiles = {};
+		this.soundFiles = {
+			dig: 'assets/snd_dig.wav',
+			good: 'assets/snd_good.wav',
+			hurt: 'assets/snd_hurt.wav',
+			step: 'assets/snd_step.wav'
+		};
+		this.globalVolume = 0.8;
+	}
+
+	playSound(name) {
+		this.sounds[name].currentTime = 0;
+		this.sounds[name].volume = 1 * this.globalVolume;
+		this.sounds[name].play();
+	}
+
+	turnVolumeUp() {
+		if (this.globalVolume < 1)
+			this.globalVolume += 0.1;
+	}
+
+	turnVolumeDown() {
+		if (this.globalVolume > 0)
+			this.globalVolume -= 0.1;
 	}
 
 	load() {
-		this.loadImages();
-		// this.loadSounds();
-
 		let imagesLoaded = new Promise((resolve, reject) => {
 			document.addEventListener('allimagesloaded', () => resolve());
 		});
-		let soundsLoaded = Promise.resolve('NONE'); // TEMP
+
+		let soundsLoaded = new Promise((resolve, reject) => {
+			document.addEventListener('allsoundsloaded', () => resolve());
+		});
+
+		this.loadImages();
+		this.loadSounds();
 
 		return Promise.all([imagesLoaded, soundsLoaded]);
+	}
+
+	loadSounds() {
+		const noSounds = Object.keys(this.soundFiles).length;
+		let loadedSoundsCount = 0;
+
+		for (const sound in this.soundFiles) {
+			this.sounds[sound] = new Audio(this.soundFiles[sound]);
+			setTimeout(() => {
+				this.sounds[sound].currentTime = 0;
+				loadedSoundsCount += 1;
+			    if (loadedSoundsCount === noSounds) {
+			    	// Finished loading all of them!
+			    	document.dispatchEvent(new Event('allsoundsloaded'));
+			    }
+			}, 100) // WARNING: This asumes short sounds!
+		}
 	}
 
 	loadImages() {
