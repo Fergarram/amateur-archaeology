@@ -61,29 +61,43 @@ class Grid {
 		this.addBlock(x, y, type);
 	}
 
+	clean(player_y) {
+		this.gridList = this.gridList.filter(block => block.y >= player_y - 5);
+	}
+
 	draw(CanvasHelper) {
 
 		if (this.gridList.length < 1)
 			return;
 
+
+		// Draw air first
 		for (var i = 0; i < this.gridList.length; i++) {
+			if (this.gridList[i].type === 'air') {
 
-			const x = this.world.x + this.global_x + this.gridList[i].x * 32;
-			const y = this.world.y + this.global_y + this.gridList[i].y * 32;
+				const x = this.world.x + this.global_x + this.gridList[i].x * 32;
+				const y = this.world.y + this.global_y + this.gridList[i].y * 32;
+				CanvasHelper.drawRect('#B8C4D4', x-1, y-1, 34, 34);
 
+				// Debug
+				if (window.DEBUG) {
+					CanvasHelper.drawText(`(${this.gridList[i].x}, ${this.gridList[i].y})`, x, y);
+				}
+			}
+		}
+
+		// Then everything else
+		for (var i = 0; i < this.gridList.length; i++) {
 			if (this.gridList[i].type === 'dirt' || this.gridList[i].type === 'hard') {
+
+				const x = this.world.x + this.global_x + this.gridList[i].x * 32;
+				const y = this.world.y + this.global_y + this.gridList[i].y * 32;
 				CanvasHelper.drawImage('dirt', x, y);
 
-			} else if (this.gridList[i].type === 'air') {
-				CanvasHelper.drawRect('#B8C4D4', x, y, 32, 32);
-
-			} else {
-				CanvasHelper.drawRect('#FF0000', x, y, 32, 32);
-			}
-
-			// Debug
-			if (window.DEBUG) {
-				CanvasHelper.drawText(`(${this.gridList[i].x}, ${this.gridList[i].y})`, x, y);
+				// Debug
+				if (window.DEBUG) {
+					CanvasHelper.drawText(`(${this.gridList[i].x}, ${this.gridList[i].y})`, x, y);
+				}
 			}
 		}
 	}

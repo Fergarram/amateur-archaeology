@@ -36,6 +36,7 @@ class AppCore {
 				// @TODO: if !_PROD_ then be able to toggle debug.
 				window.DEBUG = true;
 				window.Grid = Grid;
+				window.World = World;
 				window.Player = Player;
 				window.AssetLoader = AssetLoader;
 

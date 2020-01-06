@@ -41,6 +41,9 @@ class Player {
 			this.sprite = 'idle';
 			this.assets.playSound('step');
 			this.calculateGridPosition();
+
+			// Clean block rendering list.
+			this.grid.clean(this.grid_y);
 		}
 
 		// Move right
@@ -93,6 +96,9 @@ class Player {
 
 		// Update sprite
 		this.currentImage = `${this.sprite}_${this.dir}`;
+
+		// Camera
+		this.world.y = -(this.y - 160);
 	}
 
 	draw(CanvasHelper) {
