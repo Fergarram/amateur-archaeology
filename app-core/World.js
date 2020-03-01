@@ -10,6 +10,7 @@ class World {
 		this.x = 0;
 		this.y = 0;
 		this.timePassed = 0; // Milliseconds
+		this.titleAlpha = 1;
 	}
 
 	update(delta) {
@@ -25,13 +26,23 @@ class World {
 			this.timePassed += delta;
 			this.sky_x = -easeInOutQuint(this.timePassed / 1000, 0, this.skyDistance, 10);
 		}
+
+		// Update title alpha
+		if (this.titleAlpha > 0) {
+			this.titleAlpha = 1 - easeInOutQuint(this.timePassed / 1000, 0, 1, 10);
+		}
 	}
 
 	draw(CanvasHelper) {
 
 		// Sky
-		CanvasHelper.drawImage('sky', this.sky_x, this.y + 0);
-		CanvasHelper.drawImage('dithering', 0, this.y + 0);
+		CanvasHelper.drawImage('sky', this.sky_x, this.y);
+		CanvasHelper.drawImage('dithering', 0, this.y);
+
+		// Title
+		if (this.titleAlpha > 0) {
+			CanvasHelper.drawImageAlpha('title', 4, this.y + 14, this.titleAlpha);
+		}
 
 		// Decorative tiles
 		CanvasHelper.drawImage('ground', this.x, this.y + this.ground_y);

@@ -75,6 +75,14 @@ class CanvasHelper {
 						   this.assets.images[imageName].width*s,
 						   this.assets.images[imageName].height*s);
 	}
+
+	drawImageAlpha(imageName, x, y, a, s=2) {
+		this.ctx.globalAlpha = a;
+		this.ctx.drawImage(this.assets.images[imageName], x, y,
+			this.assets.images[imageName].width*s,
+			this.assets.images[imageName].height*s);
+		this.ctx.globalAlpha = 1;
+	}
 }
 
 export default new CanvasHelper();

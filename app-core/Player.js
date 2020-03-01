@@ -22,6 +22,8 @@ class Player {
 		this.isFalling = false;
 		this.lastKeyPressed = false;
 		this.sprite = 'idle';
+		this.gameStarted = false;
+		this.canMove = false;
 	}
 
 	update(delta) {
@@ -77,7 +79,6 @@ class Player {
 				this.sprite = 'move';
 				this.movingTime += delta;
 				this.x -= easeLinear(this.movingTime / 1000, 0, this.grid_size, this.speed);
-			
 			}
 
 			if (this.x <= this.dx && this.isMoving) {
@@ -111,6 +112,10 @@ class Player {
 	}
 
 	onKeyDown(key) {
+
+		if (!this.canMove) {
+			return;
+		}
 
 		// Move left
 		if (key === '4' || key === 'ArrowLeft') {

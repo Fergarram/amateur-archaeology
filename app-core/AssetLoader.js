@@ -21,9 +21,15 @@ class AssetLoader {
 			treasure3: 'assets/treasure3.png',
 			treasure4: 'assets/treasure4.png',
 			treasure5: 'assets/treasure5.png',
-			treasure6: 'assets/treasure6.png'
+			treasure6: 'assets/treasure6.png',
+			title: 'assets/title.png',
+			topbar: 'assets/topbar.png',
+			dialog_back: 'assets/dialog_back.png',
+			points_suffix: 'assets/points_suffix.png',
+			instructions: 'assets/instructions.png'
 		};
 		this.soundFiles = {
+			start: 'assets/snd_start.wav',
 			dig: 'assets/snd_dig.wav',
 			good: 'assets/snd_good.wav',
 			hurt: 'assets/snd_hurt.wav',
@@ -49,6 +55,12 @@ class AssetLoader {
 	}
 
 	load() {
+		const digitFont = new FontFace('AADigits', 'url(assets/aadigits.ttf)');
+
+		digitFont.load().then((loadedFont) => {
+			document.fonts.add(loadedFont);
+		});
+
 		let imagesLoaded = new Promise((resolve, reject) => {
 			document.addEventListener('allimagesloaded', () => resolve());
 		});

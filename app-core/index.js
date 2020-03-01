@@ -1,3 +1,4 @@
+import HTMLUI from './HTMLUI.js';
 import AssetLoader from './AssetLoader.js';
 import CanvasHelper from './CanvasHelper.js';
 import Grid from './Grid.js';
@@ -8,6 +9,9 @@ class AppCore {
 
 	init() {
 		window.onload = () => {
+
+			HTMLUI.init();
+
 			AssetLoader.load().then(() => {
 
 				// Initialize canvas helper
@@ -33,13 +37,17 @@ class AppCore {
 				Grid.world = World;
 
 				// Debugging...
-				// @TODO: if !_PROD_ then be able to toggle debug.
-				window.DEBUG = true;
+				window.DEBUG = false;
 				window.Grid = Grid;
 				window.World = World;
 				window.Player = Player;
 				window.AssetLoader = AssetLoader;
 
+
+				AssetLoader.playSound('start');
+				setTimeout(() => {
+					HTMLUI.show();
+				}, 5000);
 
 				// Start the main loop
 				CanvasHelper.loop(this.update, this.draw);
@@ -61,9 +69,15 @@ class AppCore {
 	keyboardEventHandler(event) {
 		event.preventDefault();
 
+		if (HTMLUI.isActive && !Player.canMove) {
+			Player.canMove = true;
+			HTMLUI.hideDialog();
+			// @TODO: Start counting, etc.
+			return;
+		}
+
 	    Player.onKeyDown(event.key);
 
-		// @TODO: if !_PROD_ then be able to toggle debug.
 		if (event.key === '*' || event.key === 'Control') {
 	    	window.DEBUG = !window.DEBUG;
 	    }
