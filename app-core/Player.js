@@ -5,6 +5,7 @@ class Player {
 	constructor() {
 		this.world = null;
 		this.assets = null;
+		this.treasures = null;
 		this.grid = null;
 		this.grid_x = 2;
 		this.grid_y = -1;
@@ -46,6 +47,7 @@ class Player {
 
 			// We need to let the grid know the player moved down.
 			this.grid.updateGrid(this.grid_y);
+			this.treasures.clean(this.grid_y);
 		}
 
 		// Move right

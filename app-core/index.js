@@ -33,13 +33,14 @@ class AppCore {
 				Grid.randomizeLane(3);
 
 				// Initialing world
-				Player.assets = AssetLoader;
-				Player.world = World;
-				Player.grid = Grid;
 				Grid.world = World;
 				Grid.treasures = Treasures;
 				Treasures.world = World;
 				Treasures.grid = Grid;
+				Player.assets = AssetLoader;
+				Player.world = World;
+				Player.grid = Grid;
+				Player.treasures = Treasures;
 
 				// Debugging...
 				window.DEBUG = false;

@@ -1,11 +1,11 @@
-import { easeInOutQuint } from './Utilities.js';
+import { easeLinear } from './Utilities.js';
 
 class Treasures {
     constructor() {
         this.list = [];
         this.world = null;
         this.grid = null;
-        this.speed = 0.25 // Seconds? - More means slower
+        this.speed = 0.1 // Seconds? - More means slower
     }
 
     create(gx, gy, type) {
@@ -25,6 +25,11 @@ class Treasures {
 		});
     }
 
+    clean(player_y) {
+        // Delete the treasures that are not in the view anymore.
+		this.list = this.list.filter(t => t.grid_y >= player_y - 4);
+    }
+
     update(delta) {
         if (this.list.length < 1)
 			return;
@@ -42,7 +47,7 @@ class Treasures {
                 if (this.list[i].y < this.list[i].dy) {
                     this.list[i].isFalling = true;
                     this.list[i].movingTime += delta;
-                    this.list[i].y += easeInOutQuint(this.list[i].movingTime / 1000, 0, this.grid.size, this.speed);
+                    this.list[i].y += easeLinear(this.list[i].movingTime / 1000, 0, this.grid.size, this.speed);
                 }
 
                 if (this.list[i].y >= this.list[i].dy && this.list[i].isFalling) {
