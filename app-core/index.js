@@ -29,6 +29,7 @@ class AppCore {
 				Grid.addBlock(4, 0, 'dirt');
 				Grid.addBlock(5, 0, 'dirt');
 				Grid.addBlock(6, 0, 'dirt');
+				Grid.randomizeLane(3);
 
 				// Initialing world
 				Player.assets = AssetLoader;

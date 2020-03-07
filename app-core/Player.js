@@ -44,8 +44,8 @@ class Player {
 			this.assets.playSound('step');
 			this.calculateGridPosition();
 
-			// Clean block rendering list.
-			this.grid.clean(this.grid_y);
+			// We need to let the grid know the player moved down.
+			this.grid.reCalculate(this.grid_y);
 		}
 
 		// Move right
