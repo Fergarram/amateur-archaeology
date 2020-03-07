@@ -45,7 +45,7 @@ class Player {
 			this.calculateGridPosition();
 
 			// We need to let the grid know the player moved down.
-			this.grid.reCalculate(this.grid_y);
+			this.grid.updateGrid(this.grid_y);
 		}
 
 		// Move right

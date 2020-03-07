@@ -4,6 +4,7 @@ import CanvasHelper from './CanvasHelper.js';
 import Grid from './Grid.js';
 import World from './World.js';
 import Player from './Player.js';
+import Treasures from './Treasures.js';
 
 class AppCore {
 
@@ -36,6 +37,9 @@ class AppCore {
 				Player.world = World;
 				Player.grid = Grid;
 				Grid.world = World;
+				Grid.treasures = Treasures;
+				Treasures.world = World;
+				Treasures.grid = Grid;
 
 				// Debugging...
 				window.DEBUG = false;
@@ -43,6 +47,7 @@ class AppCore {
 				window.World = World;
 				window.Player = Player;
 				window.AssetLoader = AssetLoader;
+				window.Treasures = Treasures;
 
 
 				AssetLoader.playSound('start');
@@ -59,11 +64,13 @@ class AppCore {
 	update(delta) {
 		World.update(delta);
 		Player.update(delta);
+		Treasures.update(delta);
 	}
 
 	draw() {
 		World.draw(CanvasHelper);
 		Grid.draw(CanvasHelper);
+		Treasures.draw(CanvasHelper);
 		Player.draw(CanvasHelper);
 	}
 

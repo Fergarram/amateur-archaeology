@@ -2,8 +2,10 @@ class Grid {
 
 	constructor() {
 		this.world = null;
+		this.treasures = null;
 		this.global_x = 576;
 		this.global_y = 192;
+		this.size = 32;
 		this.gridList = [];
 		this.timePassed = 0; // Milliseconds
 		// TYPES:
@@ -65,27 +67,23 @@ class Grid {
 					let treasureAtLeft = typeAtLeft ? typeAtLeft.indexOf('treasure') !== -1 : false;
 					
 					if (treasureAbove) {
-						if (this.getBlockType(x, y - 2) === 'empty') this.addBlock(x, y - 2, 'dirt');
-						if (this.getBlockType(x + 1, y - 1) === 'empty') this.addBlock(x + 1, y - 1, 'dirt');
-						if (this.getBlockType(x - 1, y - 1) === 'empty') this.addBlock(x - 1, y - 1, 'dirt');
+						this.setBlock(x, y - 1, 'air');
+						this.treasures.create(x, y - 1, typeAbove);
 					}
 
 					if (treasureBelow) {
-						if (this.getBlockType(x, y + 2) === 'empty') this.addBlock(x, y + 2, 'dirt');
-						if (this.getBlockType(x + 1, y + 1) === 'empty') this.addBlock(x + 1, y + 1, 'dirt');
-						if (this.getBlockType(x - 1, y + 1) === 'empty') this.addBlock(x - 1, y + 1, 'dirt');
+						this.setBlock(x, y + 1, 'air');
+						this.treasures.create(x, y + 1, typeBelow);
 					}
 		
 					if (treasureAtLeft) {
-						if (this.getBlockType(x - 1, y + 1) === 'empty') this.addBlock(x - 1, y + 1, 'dirt');
-						if (this.getBlockType(x - 1, y - 1) === 'empty') this.addBlock(x - 1, y - 1, 'dirt');
-						if (this.getBlockType(x - 2, y) === 'empty') this.addBlock(x - 2, y, 'dirt');
+						this.setBlock(x - 1, y, 'air');
+						this.treasures.create(x - 1, y, typeAtLeft);
 					}
 		
 					if (treasureAtRight) {
-						if (this.getBlockType(x + 1, y + 1) === 'empty') this.addBlock(x + 1, y + 1, 'dirt');
-						if (this.getBlockType(x + 1, y - 1) === 'empty') this.addBlock(x + 1, y - 1, 'dirt');
-						if (this.getBlockType(x + 2, y) === 'empty') this.addBlock(x + 2, y, 'dirt');
+						this.setBlock(x + 1, y, 'air');
+						this.treasures.create(x + 1, y, typeAtRight);
 					}
 				}
 
@@ -96,15 +94,8 @@ class Grid {
 		this.addBlock(x, y, type);
 	}
 
-	reCalculate(player_y) {
-		// This method is executed everytime the player moves one block down.
-		
-		// Clean the previous blocks above which are not visible
+	updateGrid(player_y) {
 		this.gridList = this.gridList.filter(block => block.y >= player_y - 4);
-		
-		// player_y + 4 is the bottom-most visible block position.
-		// Thus, we need to add the player_y + 5 to make this seamless.
-		// Let's do this lane-by-lane.
 		this.randomizeLane(player_y + 5);
 	}
 
@@ -128,11 +119,14 @@ class Grid {
 				} else if (dice > 60 && dice <= 80) {
 					this.setBlock(x, laneY, `treasure1`);
 					
-				} else if (dice > 80 && dice <= 90) {
+				} else if (dice > 80 && dice <= 85) {
 					this.setBlock(x, laneY, `treasure5`);
 					
-				} else if (dice > 90 && dice <= 100) {
+				} else if (dice > 85 && dice <= 90) {
 					this.setBlock(x, laneY, `treasure3`);					
+
+				} else if (dice > 95 && dice <= 100) {
+					this.setBlock(x, laneY, `treasure6`);
 				}
 			}
 		}
@@ -146,8 +140,8 @@ class Grid {
 		for (var i = 0; i < this.gridList.length; i++) {
 			if (this.gridList[i].type === 'air') {
 
-				const x = this.world.x + this.global_x + this.gridList[i].x * 32;
-				const y = this.world.y + this.global_y + this.gridList[i].y * 32;
+				const x = this.world.x + this.global_x + this.gridList[i].x * this.size;
+				const y = this.world.y + this.global_y + this.gridList[i].y * this.size;
 				CanvasHelper.drawRect('#B8C4D4', x-1, y-1, 34, 34);
 
 				// Debug
@@ -163,8 +157,8 @@ class Grid {
 				continue;
 			}
 			
-			const x = this.world.x + this.global_x + this.gridList[i].x * 32;
-			const y = this.world.y + this.global_y + this.gridList[i].y * 32;
+			const x = this.world.x + this.global_x + this.gridList[i].x * this.size;
+			const y = this.world.y + this.global_y + this.gridList[i].y * this.size;
 			
 			if (this.gridList[i].type.indexOf('treasure') !== -1) {
 				CanvasHelper.drawImage(this.gridList[i].type, x, y);
