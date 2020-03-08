@@ -25,10 +25,9 @@ class CanvasHelper {
 	}
 
 	loop(update, render) {
-		let oldTimeStamp = 0;
 		let fps, delta, lastRender = Date.now() - 1;
 
-		const animate = (timeStamp) => {
+		const animate = () => {
 			delta = Date.now() - lastRender;
 		    fps = parseInt(1000/delta);
 
@@ -40,7 +39,7 @@ class CanvasHelper {
 			if (window.DEBUG) {
 				this.ctx.fillStyle = "white";
 				this.ctx.font = "12px Arial";
-				this.ctx.fillText(`FPS: ${fps}`, 16, this.canvas.height - 16);
+				this.ctx.fillText(`DELTA: ${delta}`, 16, this.canvas.height - 16);
 			}
 
 			lastRender = Date.now();

@@ -1,4 +1,4 @@
-class HTMLUI {
+class UserInterface {
 
     constructor() {
         this.screen = null;
@@ -116,6 +116,18 @@ class HTMLUI {
         this.screen.appendChild(this.controlsEl);
     }
 
+    updateScore(score, goal) {
+        this.scoreEl.innerText = `${score} / ${goal}`;
+    }
+
+    updateTime(remainingTime, maxTime) {
+        // The reason behind this crazy formula is that I want 
+        // it to unfill by scaled pixes (2 real pixels) at a time.
+        if (remainingTime >= 0) {
+            this.timeBarEl.style.width = `${Math.round((remainingTime * 42) / maxTime) * 2}px`;
+        }
+    }
+
     hideDialog() {
         if (this.dialogEl) {
             this.dialogEl.style.display = 'none';
@@ -142,4 +154,4 @@ class HTMLUI {
     }
 }
 
-export default new HTMLUI();
+export default new UserInterface();

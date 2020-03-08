@@ -1,17 +1,18 @@
-import HTMLUI from './HTMLUI.js';
+import UserInterface from './UserInterface.js';
 import AssetLoader from './AssetLoader.js';
 import CanvasHelper from './CanvasHelper.js';
 import Grid from './Grid.js';
 import World from './World.js';
 import Player from './Player.js';
 import Treasures from './Treasures.js';
+import Game from './Game.js';
 
 class AppCore {
 
 	init() {
 		window.onload = () => {
 
-			HTMLUI.init();
+			UserInterface.init();
 
 			AssetLoader.load().then(() => {
 
@@ -30,7 +31,7 @@ class AppCore {
 				Grid.addBlock(4, 0, 'dirt');
 				Grid.addBlock(5, 0, 'dirt');
 				Grid.addBlock(6, 0, 'dirt');
-				Grid.randomizeLane(3);
+				Grid.randomizeLine(3);
 
 				// Initialing world
 				Grid.world = World;
@@ -39,8 +40,10 @@ class AppCore {
 				Treasures.grid = Grid;
 				Player.assets = AssetLoader;
 				Player.world = World;
+				Player.game = Game;
 				Player.grid = Grid;
 				Player.treasures = Treasures;
+				Game.ui = UserInterface;
 
 				// Debugging...
 				window.DEBUG = false;
@@ -50,10 +53,9 @@ class AppCore {
 				window.AssetLoader = AssetLoader;
 				window.Treasures = Treasures;
 
-
 				AssetLoader.playSound('start');
 				setTimeout(() => {
-					HTMLUI.show();
+					UserInterface.show();
 				}, 5000);
 
 				// Start the main loop
@@ -66,6 +68,7 @@ class AppCore {
 		World.update(delta);
 		Player.update(delta);
 		Treasures.update(delta);
+		Game.update(delta);
 	}
 
 	draw() {
@@ -78,9 +81,10 @@ class AppCore {
 	keyboardEventHandler(event) {
 		event.preventDefault();
 
-		if (HTMLUI.isActive && !Player.canMove) {
+		if (UserInterface.isActive && !Player.canMove) {
 			Player.canMove = true;
-			HTMLUI.hideDialog();
+			Game.started = true;
+			UserInterface.hideDialog();
 			// @TODO: Start counting, etc.
 			return;
 		}

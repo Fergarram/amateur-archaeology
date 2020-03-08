@@ -1,5 +1,4 @@
 import { easeLinear } from './Utilities.js';
-import AssetLoader from './AssetLoader.js';
 
 class Player {
 
@@ -7,6 +6,7 @@ class Player {
 		this.world = null;
 		this.assets = null;
 		this.treasures = null;
+		this.game = null;
 		this.grid = null;
 		this.grid_x = 2;
 		this.grid_y = -1;
@@ -24,7 +24,6 @@ class Player {
 		this.isFalling = false;
 		this.lastKeyPressed = false;
 		this.sprite = 'idle';
-		this.gameStarted = false;
 		this.canMove = false;
 	}
 
@@ -229,6 +228,31 @@ class Player {
 
 		this.treasures.takeTreasures(this.grid_x, this.grid_y, (treasures) => {
 			this.assets.playSound('good');
+			treasures.forEach((t) => {
+				switch(t) {
+					case 'treasure2':
+						this.game.addPoints(15);
+						break;
+					case 'treasure4':
+						this.game.addPoints(20);
+						break;
+					case 'treasure0':
+						this.game.addPoints(25);
+						break;
+					case 'treasure1':
+						this.game.addPoints(30);
+						break;
+					case 'treasure5':
+						this.game.addPoints(80);
+						break;
+					case 'treasure3':
+						this.game.addPoints(100);
+						break;
+					case 'treasure6':
+						this.game.remainingTime += 15;
+						break;
+				}
+			});
 		});
 		
 	}

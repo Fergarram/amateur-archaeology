@@ -96,10 +96,10 @@ class Grid {
 
 	updateGrid(player_y) {
 		this.gridList = this.gridList.filter(block => block.y >= player_y - 4);
-		this.randomizeLane(player_y + 5);
+		this.randomizeLine(player_y + 5);
 	}
 
-	randomizeLane(laneY) {
+	randomizeLine(laneY) {
 		for (let x = 0; x < 7; x++) {
 			// Roll the dice for dirt
 			let dice = Math.random() * 100;
