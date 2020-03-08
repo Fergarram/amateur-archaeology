@@ -249,7 +249,7 @@ class Player {
 						this.game.addPoints(100);
 						break;
 					case 'treasure6':
-						this.game.remainingTime += 15;
+						this.game.addTime(15);
 						break;
 				}
 			});

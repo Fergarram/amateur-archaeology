@@ -16,6 +16,14 @@ class Game {
         this.ui.updateScore(this.score, this.goal);
     }
 
+    addTime(time) {
+        if (this.remainingTime + time >= this.maxTime) {
+            this.remainingTime = this.maxTime;
+        } else {
+            this.remainingTime += time;
+        }
+    }
+
     update(delta) {
         // delta is the amount of miliseconds that between every frame.
         if (this.started) {

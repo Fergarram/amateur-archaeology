@@ -52,6 +52,7 @@ class AppCore {
 				window.Player = Player;
 				window.AssetLoader = AssetLoader;
 				window.Treasures = Treasures;
+				window.Game = Game;
 
 				AssetLoader.playSound('start');
 				setTimeout(() => {
