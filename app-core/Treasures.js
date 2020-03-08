@@ -26,8 +26,26 @@ class Treasures {
     }
 
     clean(player_y) {
-        // Delete the treasures that are not in the view anymore.
-		this.list = this.list.filter(t => t.grid_y >= player_y - 4);
+        this.list = this.list.filter(t => t.grid_y >= player_y - 4);
+    }
+
+    takeTreasures(x, y, callback) {
+        if (this.list < 1) {
+            return;
+        }
+
+        const treasures = [];
+        for (var i = 0; i < this.list.length; i++) {
+			if (this.list[i].grid_x === x && this.list[i].grid_y === y) {
+                treasures.push(this.list[i].type);
+                this.list[i] = null;
+			}
+        }
+
+        if (treasures.length > 0) {
+            this.list = this.list.filter(t => t !== null);
+            callback(treasures);
+        }
     }
 
     update(delta) {

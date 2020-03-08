@@ -1,4 +1,5 @@
 import { easeLinear } from './Utilities.js';
+import AssetLoader from './AssetLoader.js';
 
 class Player {
 
@@ -45,7 +46,7 @@ class Player {
 			this.assets.playSound('step');
 			this.calculateGridPosition();
 
-			// We need to let the grid know the player moved down.
+			// Updating the grid and treasure lists for clean up, etc.
 			this.grid.updateGrid(this.grid_y);
 			this.treasures.clean(this.grid_y);
 		}
@@ -225,6 +226,11 @@ class Player {
 				this.dy = this.y + this.grid_size;
 			}
 		}
+
+		this.treasures.takeTreasures(this.grid_x, this.grid_y, (treasures) => {
+			this.assets.playSound('good');
+		});
+		
 	}
 }
 
