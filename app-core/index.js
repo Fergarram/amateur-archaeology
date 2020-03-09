@@ -56,6 +56,7 @@ class AppCore {
 
 				AssetLoader.playSound('start');
 				setTimeout(() => {
+					UserInterface.updateScore(Game.score, Game.goal);
 					UserInterface.show();
 				}, 5000);
 
@@ -66,6 +67,9 @@ class AppCore {
 	}
 
 	update(delta) {
+		if (Game.freeze) {
+			return;
+		}
 		World.update(delta);
 		Player.update(delta);
 		Treasures.update(delta);
@@ -90,7 +94,9 @@ class AppCore {
 			return;
 		}
 
-	    Player.onKeyDown(event.key);
+		if (!Game.freeze) {
+			Player.onKeyDown(event.key);
+		}
 
 		if (event.key === '*' || event.key === 'Control') {
 	    	window.DEBUG = !window.DEBUG;

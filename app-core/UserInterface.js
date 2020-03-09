@@ -118,6 +118,9 @@ class UserInterface {
 
     updateScore(score, goal) {
         this.scoreEl.innerText = `${score} / ${goal}`;
+        if (!this.isActive) {
+            document.getElementById('dialog-points').innerText = `${goal}`;
+        }
     }
 
     updateTime(remainingTime, maxTime) {
@@ -135,20 +138,13 @@ class UserInterface {
     }
 
     show() {
-        if (this.topBarEl) {
-            this.topBarEl.style.removeProperty('display');
-        }
+        this.topBarEl.style.removeProperty('display');
+        this.dialogEl.style.removeProperty('display');
 
-        if (this.dialogEl) {
-            this.dialogEl.style.removeProperty('display');
-        }
-
-        if (this.controlsEl) {
-            this.controlsEl.style.removeProperty('display');
-            setTimeout(() => {
-                this.controlsEl.style.display = 'none';
-            }, 5000);
-        }
+        this.controlsEl.style.removeProperty('display');
+        setTimeout(() => {
+            this.controlsEl.style.display = 'none';
+        }, 5000);
 
         this.isActive = true;
     }
