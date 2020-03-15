@@ -1,6 +1,7 @@
 import UserInterface from './UserInterface.js';
 import AssetLoader from './AssetLoader.js';
 import CanvasHelper from './CanvasHelper.js';
+import TransitionHelper from './TransitionHelper.js';
 import Grid from './Grid.js';
 import World from './World.js';
 import Player from './Player.js';
@@ -18,20 +19,13 @@ class AppCore {
 
 				// Initialize canvas helper
 				CanvasHelper.init(AssetLoader);
+				TransitionHelper.init();
 
 				// Initialize keyboard event handler
 				document.addEventListener('keydown', this.keyboardEventHandler);
 
 				// Randomize the grid
-				Grid.addBlock(0, 0, 'dirt');
-				Grid.addBlock(1, 0, 'dirt');
-				Grid.addBlock(2, 0, 'dirt');
-				Grid.addBlock(3, 0, 'air');
-				Grid.addBlock(3, 1, 'dirt');
-				Grid.addBlock(4, 0, 'dirt');
-				Grid.addBlock(5, 0, 'dirt');
-				Grid.addBlock(6, 0, 'dirt');
-				Grid.randomizeLine(3);
+				Grid.reset();
 
 				// Initialing world
 				Grid.world = World;
@@ -44,6 +38,10 @@ class AppCore {
 				Player.grid = Grid;
 				Player.treasures = Treasures;
 				Game.ui = UserInterface;
+				Game.player = Player;
+				Game.grid = Grid;
+				Game.treasures = Treasures;
+				Game.transition = TransitionHelper;
 
 				// Debugging...
 				window.DEBUG = false;
@@ -53,6 +51,8 @@ class AppCore {
 				window.AssetLoader = AssetLoader;
 				window.Treasures = Treasures;
 				window.Game = Game;
+				window.UserInterface = UserInterface;
+				window.TransitionHelper = TransitionHelper;
 
 				AssetLoader.playSound('start');
 				setTimeout(() => {
@@ -90,7 +90,6 @@ class AppCore {
 			Player.canMove = true;
 			Game.started = true;
 			UserInterface.hideDialog();
-			// @TODO: Start counting, etc.
 			return;
 		}
 

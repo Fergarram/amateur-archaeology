@@ -13,6 +13,10 @@ class World {
 		this.titleAlpha = 1;
 	}
 
+	updateCamera(py) {
+		this.y = -(py - 160);
+	}
+
 	update(delta) {
 
 		// Move world

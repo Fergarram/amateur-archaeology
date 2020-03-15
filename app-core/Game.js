@@ -2,6 +2,10 @@ class Game {
     
     constructor() {
         this.ui = null;
+        this.player = null;
+        this.grid = null;
+        this.transition = null;
+        this.treasures = null;
         this.level = 1;
         this.maxTime = 120; // Seconds
         this.remainingTime = this.maxTime;
@@ -25,6 +29,29 @@ class Game {
         }
     }
 
+    endLevel() {
+        this.transition.moveIn(() => {
+            this.player.reset();
+            this.grid.reset();
+            this.treasures.reset();
+            this.freeze = false;
+            // Reset time and score...
+            // this.level += 1;
+            // this.goal = ...;
+            // this.maxTime = ...
+            this.remainingTime = this.maxTime;
+            this.score = 0;
+    
+            // Show UI
+            this.ui.isActive = false;
+            this.ui.updateScore(this.score, this.goal);
+            this.ui.updateTime(this.remainingTime, this.maxTime);
+            this.transition.moveOut(() => {
+                this.ui.show();
+            });
+        });
+    }
+
     update(delta) {
         if (this.started) {
             this.elapsedTime += delta;
@@ -36,8 +63,7 @@ class Game {
                 if (this.remainingTime === 0) {
                     this.started = false;
                     this.freeze = true;
-                    // Restart game states and increment goals
-                    // Or, show death screen and restart game.
+                    setTimeout(() => this.endLevel(), 1000);
                 }
 
                 this.ui.updateTime(this.remainingTime, this.maxTime);

@@ -26,7 +26,7 @@ class AssetLoader {
 			topbar: 'assets/topbar.png',
 			dialog_back: 'assets/dialog_back.png',
 			points_suffix: 'assets/points_suffix.png',
-			instructions: 'assets/instructions.png'
+			controls: 'assets/controls.png'
 		};
 		this.soundFiles = {
 			start: 'assets/snd_start.wav',

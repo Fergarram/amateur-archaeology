@@ -25,6 +25,10 @@ class Treasures {
 		});
     }
 
+    reset() {
+        this.list = [];
+    }
+
     clean(player_y) {
         this.list = this.list.filter(t => t.grid_y >= player_y - 4);
     }

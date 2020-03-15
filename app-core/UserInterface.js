@@ -65,11 +65,12 @@ class UserInterface {
         this.dialogEl.style.width = '172px';
         this.dialogEl.style.height = '192px';
         this.dialogEl.style.marginLeft = '34px';
-        this.dialogEl.style.marginTop = '56px';
+        this.dialogEl.style.marginTop = '50px';
         this.dialogEl.style.backgroundColor = '#000000';
         this.dialogEl.style.backgroundImage = 'url(assets/dialog_back.png)';
         this.dialogEl.style.backgroundRepeat = 'no-repeat';
-        this.dialogEl.style.border = '2px solid #b8c4d4';
+        this.dialogEl.style.border = '2px dashed #b8c4d4';
+        this.dialogEl.style.boxShadow = '0 0 0 2px black';
 
         this.dialogPointsEl = document.createElement('div');
         this.dialogPointsEl.innerHTML = '<span id="dialog-points">500</span>';
@@ -99,12 +100,11 @@ class UserInterface {
 
         this.controlsEl = document.createElement('img');
         this.controlsEl.id = 'controls';
-        this.controlsEl.src = 'assets/instructions.png';
+        this.controlsEl.src = 'assets/controls.png';
         this.controlsEl.style.display = 'none';
         this.controlsEl.style.position = 'absolute';
         this.controlsEl.style.zIndex = 9999;
-        this.controlsEl.style.marginLeft = '30px';
-        this.controlsEl.style.marginTop = '264px';
+        this.controlsEl.style.marginTop = '252px';
 
         //
         // Appending to DOM
@@ -132,19 +132,14 @@ class UserInterface {
     }
 
     hideDialog() {
-        if (this.dialogEl) {
-            this.dialogEl.style.display = 'none';
-        }
+        this.dialogEl.style.display = 'none';
+        this.controlsEl.style.display = 'none';
     }
 
     show() {
         this.topBarEl.style.removeProperty('display');
         this.dialogEl.style.removeProperty('display');
-
         this.controlsEl.style.removeProperty('display');
-        setTimeout(() => {
-            this.controlsEl.style.display = 'none';
-        }, 5000);
 
         this.isActive = true;
     }

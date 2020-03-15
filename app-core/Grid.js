@@ -18,6 +18,19 @@ class Grid {
 		// 7. hard
 	}
 
+	reset() {
+		this.gridList = [];
+		this.addBlock(0, 0, 'dirt');
+		this.addBlock(1, 0, 'dirt');
+		this.addBlock(2, 0, 'dirt');
+		this.addBlock(3, 0, 'air');
+		this.addBlock(3, 1, 'dirt');
+		this.addBlock(4, 0, 'dirt');
+		this.addBlock(5, 0, 'dirt');
+		this.addBlock(6, 0, 'dirt');
+		this.randomizeLine(3);
+	}
+
 	addBlock(x, y, type) {
 		if (x < 0 || x > 6) type = 'hard';
 		this.gridList.push({

@@ -27,6 +27,22 @@ class Player {
 		this.canMove = false;
 	}
 
+	reset() {
+		this.grid_x = 2;
+		this.grid_y = -1;
+		this.x = this.grid_startx + this.grid_x * this.grid_size;
+		this.y = this.grid_starty + this.grid_y * this.grid_size;
+		this.dx = this.x;
+		this.dy = this.y;
+		this.movingTime = 0; // Milliseconds
+		this.dir = 'right';
+		this.isMoving = false;
+		this.isFalling = false;
+		this.lastKeyPressed = false;
+		this.sprite = 'idle';
+		this.canMove = false;
+	}
+
 	update(delta) {
 
 		// Gravity
@@ -101,7 +117,7 @@ class Player {
 		this.currentImage = `${this.sprite}_${this.dir}`;
 
 		// Camera
-		this.world.y = -(this.y - 160);
+		this.world.updateCamera(this.y);
 	}
 
 	draw(CanvasHelper) {
