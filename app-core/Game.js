@@ -7,7 +7,7 @@ class Game {
         this.transition = null;
         this.treasures = null;
         this.level = 1;
-        this.maxTime = 120; // Seconds
+        this.maxTime = 60; // Seconds
         this.remainingTime = this.maxTime;
         this.goal = 500;
         this.score = 0;
@@ -35,10 +35,24 @@ class Game {
             this.grid.reset();
             this.treasures.reset();
             this.freeze = false;
-            // Reset time and score...
-            // this.level += 1;
-            // this.goal = ...;
-            // this.maxTime = ...
+            
+
+            // Lost
+            if (this.goal > this.score) {
+                // Go to dead screen.
+
+
+            // Won, setup new level.
+            } else if (this.score >= this.goal) {
+                const extraPoints = this.score - this.goal;
+                const bonusRatio = extraPoints / this.goal;
+                this.maxTime = Math.floor(this.maxTime * (1 + (bonusRatio / 2)));
+                this.level += 1;
+                this.goal = this.goal * 1.25; // I guess level will do something here?
+
+            }
+            
+            // Reset anyways
             this.remainingTime = this.maxTime;
             this.score = 0;
     
