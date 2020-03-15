@@ -30,7 +30,7 @@ class Game {
     }
 
     endLevel() {
-        this.transition.moveIn(() => {
+        this.transition.enter(() => {
             this.player.reset();
             this.grid.reset();
             this.treasures.reset();
@@ -46,7 +46,7 @@ class Game {
             this.ui.isActive = false;
             this.ui.updateScore(this.score, this.goal);
             this.ui.updateTime(this.remainingTime, this.maxTime);
-            this.transition.moveOut(() => {
+            this.transition.leave(() => {
                 this.ui.show();
             });
         });

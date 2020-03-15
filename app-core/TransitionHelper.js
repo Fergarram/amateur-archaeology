@@ -20,7 +20,7 @@ class TransitionHelper {
         this.speed = 75;
     }
 
-    moveIn(callback) {
+    enter(callback) {
         let count = 0;
         this.sampleSize = 4;
         this.inLoop = setInterval(() => {
@@ -36,7 +36,7 @@ class TransitionHelper {
         }, this.speed);
     }
 
-    moveOut(callback) {
+    leave(callback) {
         let count = 10;
         this.sampleSize = 40;
         this.outLoop = setInterval(() => {
