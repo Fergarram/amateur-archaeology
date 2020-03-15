@@ -13,6 +13,10 @@ class AppCore {
 	init() {
 		window.onload = () => {
 
+			if (navigator.userAgent.includes('KAIOS')) {
+				navigator.requestWakeLock('screen');
+			}
+
 			UserInterface.init();
 
 			AssetLoader.load().then(() => {
@@ -106,7 +110,9 @@ class AppCore {
 		}
 
 	    if (event.key === 'Backspace') {
-		    location.reload();
+			if (confirm("Are you sure you want to quit the game?")) {
+				window.close();
+			}
 	    }
 
 	    if (event.key === '1') {

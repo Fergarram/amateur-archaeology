@@ -26,6 +26,7 @@ class AssetLoader {
 			topbar: 'assets/topbar.png',
 			dialog_back: 'assets/dialog_back.png',
 			points_suffix: 'assets/points_suffix.png',
+			level_prefix: 'assets/level_prefix.png',
 			controls: 'assets/controls.png'
 		};
 		this.soundFiles = {
@@ -35,23 +36,22 @@ class AssetLoader {
 			hurt: 'assets/snd_hurt.wav',
 			step: 'assets/snd_step.wav'
 		};
-		this.globalVolume = 0.8;
 	}
 
 	playSound(name) {
 		this.sounds[name].currentTime = 0;
-		this.sounds[name].volume = 1 * this.globalVolume;
+		this.sounds[name].volume = 0.8;
 		this.sounds[name].play();
 	}
 
 	turnVolumeUp() {
-		if (this.globalVolume < 1)
-			this.globalVolume += 0.1;
+		if (navigator.volumeManager)
+			navigator.volumeManager.requestUp();
 	}
 
 	turnVolumeDown() {
-		if (this.globalVolume > 0)
-			this.globalVolume -= 0.1;
+		if (navigator.volumeManager)
+			navigator.volumeManager.requestDown();
 	}
 
 	load() {

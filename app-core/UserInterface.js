@@ -5,8 +5,12 @@ class UserInterface {
         this.topBarEl = null;
         this.timeBarEl = null;
         this.scoreEl = null;
+        this.levelEl = null;
+        this.levelNoEl = null;
+        this.levelPrefixEl = null;
         this.dialogEl = null;
         this.dialogPointsEl = null;
+        this.dialogPointsNoEl = null;
         this.dialogSuffixEl = null;
         this.controlsEl = null;
         this.isActive = false;
@@ -50,8 +54,40 @@ class UserInterface {
         this.scoreEl.style.color = "#FFFFFF";
         this.scoreEl.style.fontFamily = "AADigits";
 
+        this.levelEl = document.createElement('div');
+        this.levelEl.id = 'level-bar'
+        this.levelEl.style.position = 'relative';
+        this.levelEl.style.width = '228px';
+        this.levelEl.style.height = '25px';
+        this.levelEl.style.letterSpacing = `2px`;
+        this.levelEl.style.fontSize = `17.5px`;
+        this.levelEl.style.color = "#FFFFFF";
+        this.levelEl.style.backgroundColor = "#000000";
+        this.levelEl.style.fontFamily = "AADigits";
+        this.levelEl.style.textAlign = 'center';
+        this.levelEl.style.marginTop = '-10px';
+        this.levelEl.style.paddingTop = '4px';
+        this.levelEl.style.marginLeft = '6px';
+        this.levelEl.style.display = 'flex';
+        this.levelEl.style.justifyContent = 'center';
+        this.levelEl.style.lineHeight = '20px';
+
+        this.levelPrefixEl = document.createElement('img');
+        this.levelPrefixEl.id = "level-prefix";
+        this.levelPrefixEl.src = 'assets/level_prefix.png';
+        this.levelPrefixEl.style.paddingRight = '8px';
+        this.levelPrefixEl.style.height = '18px';
+
+        this.levelNoEl = document.createElement('span');
+        this.levelNoEl.id = 'level-number';
+        this.levelNoEl.innerText = '1';
+
+        this.levelEl.appendChild(this.levelPrefixEl);
+        this.levelEl.appendChild(this.levelNoEl);
+
         this.topBarEl.appendChild(this.timeBarEl);
         this.topBarEl.appendChild(this.scoreEl);
+        this.topBarEl.appendChild(this.levelEl);
 
         //
         // Dialog
@@ -66,14 +102,10 @@ class UserInterface {
         this.dialogEl.style.height = '192px';
         this.dialogEl.style.marginLeft = '34px';
         this.dialogEl.style.marginTop = '50px';
-        this.dialogEl.style.backgroundColor = '#000000';
         this.dialogEl.style.backgroundImage = 'url(assets/dialog_back.png)';
         this.dialogEl.style.backgroundRepeat = 'no-repeat';
-        this.dialogEl.style.border = '2px dashed #b8c4d4';
-        this.dialogEl.style.boxShadow = '0 0 0 2px black';
 
         this.dialogPointsEl = document.createElement('div');
-        this.dialogPointsEl.innerHTML = '<span id="dialog-points">500</span>';
         this.dialogPointsEl.style.width = `100%`;
         this.dialogPointsEl.style.letterSpacing = `2px`;
         this.dialogPointsEl.style.fontSize = `17.5px`;
@@ -85,11 +117,16 @@ class UserInterface {
         this.dialogPointsEl.style.justifyContent = 'center';
         this.dialogPointsEl.style.lineHeight = '20px';
 
+        this.dialogPointsNoEl = document.createElement('span');
+        this.dialogPointsNoEl.id = 'dialog-points';
+        this.dialogPointsNoEl.innerText = '500';
+
         this.dialogSuffixEl = document.createElement('img');
         this.dialogSuffixEl.id = "dialog-sufix";
         this.dialogSuffixEl.src = 'assets/points_suffix.png';
         this.dialogSuffixEl.style.paddingLeft = '6px';
 
+        this.dialogPointsEl.appendChild(this.dialogPointsNoEl);
         this.dialogPointsEl.appendChild(this.dialogSuffixEl);
         this.dialogEl.appendChild(this.dialogPointsEl);
         
@@ -119,8 +156,13 @@ class UserInterface {
     updateScore(score, goal) {
         this.scoreEl.innerText = `${score} / ${goal}`;
         if (!this.isActive) {
-            document.getElementById('dialog-points').innerText = `${goal}`;
+            this.dialogPointsNoEl.innerText = goal;
         }
+    }
+
+    updateLevel(level) {
+        this.levelNoEl.innerText = level;
+        this.levelEl.style.display = 'flex';
     }
 
     updateTime(remainingTime, maxTime) {
@@ -134,6 +176,7 @@ class UserInterface {
     hideDialog() {
         this.dialogEl.style.display = 'none';
         this.controlsEl.style.display = 'none';
+        this.levelEl.style.display = 'none';
     }
 
     show() {
