@@ -151,11 +151,18 @@ class Grid {
 
 		// Draw air first
 		for (var i = 0; i < this.gridList.length; i++) {
-			if (this.gridList[i].type === 'air') {
+			const isAir = this.gridList[i].type === 'air'
+			const isTreasure = this.gridList[i].type.indexOf('treasure') !== -1;
+			if (isAir || isTreasure) {
 
 				const x = this.world.x + this.global_x + this.gridList[i].x * this.size;
 				const y = this.world.y + this.global_y + this.gridList[i].y * this.size;
-				CanvasHelper.drawSquare([0.721, 0.768, 0.831, 1], x-1, y-1, 34);
+
+				if (isAir) {
+					CanvasHelper.drawSquare([0.721, 0.768, 0.831, 1], x-1, y-1, 34);
+				} else {
+					CanvasHelper.drawSquare([0.721, 0.768, 0.831, 1], x, y, 32);
+				}
 
 				// Debug
 				if (window.DEBUG) {
