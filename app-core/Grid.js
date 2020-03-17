@@ -155,7 +155,7 @@ class Grid {
 
 				const x = this.world.x + this.global_x + this.gridList[i].x * this.size;
 				const y = this.world.y + this.global_y + this.gridList[i].y * this.size;
-				CanvasHelper.drawRect('#B8C4D4', x-1, y-1, 34, 34);
+				CanvasHelper.drawSquare([0.721, 0.768, 0.831, 1], x-1, y-1, 34);
 
 				// Debug
 				if (window.DEBUG) {

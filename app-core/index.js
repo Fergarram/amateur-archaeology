@@ -23,7 +23,7 @@ class AppCore {
 
 				// Initialize canvas helper
 				CanvasHelper.init(AssetLoader);
-				TransitionHelper.init();
+				TransitionHelper.init(CanvasHelper.gl);
 
 				// Initialize keyboard event handler
 				document.addEventListener('keydown', this.keyboardEventHandler);
@@ -53,6 +53,7 @@ class AppCore {
 				window.World = World;
 				window.Player = Player;
 				window.AssetLoader = AssetLoader;
+				window.CanvasHelper = CanvasHelper;
 				window.Treasures = Treasures;
 				window.Game = Game;
 				window.UserInterface = UserInterface;

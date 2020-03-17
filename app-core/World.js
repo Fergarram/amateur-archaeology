@@ -45,7 +45,7 @@ class World {
 
 		// Title
 		if (this.titleAlpha > 0) {
-			CanvasHelper.drawImageAlpha('title', 4, this.y + 14, this.titleAlpha);
+			CanvasHelper.drawImage('title', 4, this.y + 14, this.titleAlpha);
 		}
 
 		// Decorative tiles

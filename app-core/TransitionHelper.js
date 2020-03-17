@@ -1,9 +1,7 @@
 class TransitionHelper {
 
-    init() {
-        
+    init(gl) {
         this.screen = document.getElementById('screen');
-        this.mainCanvas = document.getElementById('MainCanvas');
         this.canvas = document.createElement('canvas');
         this.canvas.id = 'TransitionCanvas';
         this.width = 240;
@@ -18,6 +16,8 @@ class TransitionHelper {
         this.ctx.mozImageSmoothingEnabled = false;
         this.ctx.webkitImageSmoothingEnabled = false;
         this.speed = 75;
+        this.ctx.transform(1, 0, 0, -1, 0, this.canvas.height);
+        this.gl = gl;
     }
 
     enter(callback) {
@@ -76,18 +76,17 @@ class TransitionHelper {
     }
     
     pixelate(sampleSize) {
-        const mctx = this.mainCanvas.getContext('2d');
-        const sourceBuffer32 = new Uint32Array(mctx.getImageData(0, 0, this.width, this.height).data.buffer);
-        for (let y = 0; y < this.height + sampleSize; y += sampleSize) {
-            for (let x = 0; x < this.width + sampleSize; x += sampleSize) {
-                const pos = (x + y * this.width);
-                const b = (sourceBuffer32[pos] >> 16) & 0xff;
-                const g = (sourceBuffer32[pos] >> 8) & 0xff;
-                const r = (sourceBuffer32[pos] >> 0) & 0xff;
-                const cr = this.clamp(Math.round(r), 0, 255);
-                const cg = this.clamp(Math.round(g), 0, 255);
-                const cb = this.clamp(Math.round(b), 0, 255);
-                this.ctx.fillStyle = `rgb(${cr}, ${cg}, ${cb})`;
+        const width = this.gl.drawingBufferWidth;
+        const height = this.gl.drawingBufferHeight;
+        const size = width * height * 4;
+        const pixels = new Uint8Array(size);
+        this.gl.readPixels(0, 0, width, height, this.gl.RGBA, this.gl.UNSIGNED_BYTE, pixels);
+
+        for (let y = 0; y < height + sampleSize; y += sampleSize) {
+            for (let x = 0; x < width + sampleSize; x += sampleSize) {
+                const offset = (y * width + x) * 4;
+                const color = pixels.slice(offset, offset + 4);
+                this.ctx.fillStyle = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
                 this.ctx.fillRect(x - sampleSize / 2, y - sampleSize / 2, sampleSize, sampleSize);
             }
         }
