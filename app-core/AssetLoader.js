@@ -1,3 +1,5 @@
+import { Howler } from './libs/howler.js';
+
 class AssetLoader {
 	constructor() {
 		this.images = {};
@@ -38,22 +40,6 @@ class AssetLoader {
 		};
 	}
 
-	playSound(name) {
-		this.sounds[name].currentTime = 0;
-		this.sounds[name].volume = 0.8;
-		this.sounds[name].play();
-	}
-
-	turnVolumeUp() {
-		if (navigator.volumeManager)
-			navigator.volumeManager.requestUp();
-	}
-
-	turnVolumeDown() {
-		if (navigator.volumeManager)
-			navigator.volumeManager.requestDown();
-	}
-
 	load() {
 		const digitFont = new FontFace('AADigits', 'url(assets/aadigits.ttf)');
 
@@ -75,20 +61,23 @@ class AssetLoader {
 		return Promise.all([imagesLoaded, soundsLoaded]);
 	}
 
+	playSound(name) {
+		this.sounds[name].play();
+	}
+
 	loadSounds() {
 		const noSounds = Object.keys(this.soundFiles).length;
 		let loadedSoundsCount = 0;
 
-		for (const sound in this.soundFiles) {
-			this.sounds[sound] = new Audio(this.soundFiles[sound]);
-			setTimeout(() => {
-				this.sounds[sound].currentTime = 0;
+		for (const name in this.soundFiles) {
+			this.sounds[name] = new Howl({ src: [this.soundFiles[name]] });
+			this.sounds[name].once('load', () => {
 				loadedSoundsCount += 1;
 			    if (loadedSoundsCount === noSounds) {
 			    	// Finished loading all of them!
 			    	document.dispatchEvent(new Event('allsoundsloaded'));
 			    }
-			}, 100) // WARNING: This asumes short sounds!
+			});
 		}
 	}
 
