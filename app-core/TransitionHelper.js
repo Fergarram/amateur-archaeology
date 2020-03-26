@@ -37,6 +37,10 @@ class TransitionHelper {
     }
 
     leave(callback) {
+        if (!callback) {
+            this.ctx.clearRect(0, 0, this.width, this.height);
+            return;
+        }
         let count = 10;
         this.sampleSize = 40;
         this.outLoop = setInterval(() => {

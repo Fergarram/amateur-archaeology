@@ -13,6 +13,8 @@ class UserInterface {
         this.dialogPointsNoEl = null;
         this.dialogSuffixEl = null;
         this.controlsEl = null;
+        this.gameOverEl = null;
+        this.gameOverTextEl = null;
         this.isActive = false;
     }
 
@@ -143,14 +145,47 @@ class UserInterface {
         this.controlsEl.style.zIndex = 9999;
         this.controlsEl.style.marginTop = '252px';
 
+
+        //
+        // Game Over Screen
+        //
+
+        this.gameOverEl = document.createElement('div');
+        this.gameOverEl.style.width = '240px';
+        this.gameOverEl.style.height = '320px';
+        this.gameOverEl.style.position = 'absolute';
+        this.gameOverEl.style.backgroundColor = '#000000';
+        this.gameOverEl.style.zIndex = 99999;
+        this.gameOverEl.style.display = 'none';
+        this.gameOverEl.style.justifyContent = 'center';
+        this.gameOverEl.style.alignItems = 'center';
+        this.gameOverTextEl = document.createElement('img');
+        this.gameOverTextEl.src = 'assets/game_over.png';
+        this.gameOverTextEl.style.transition = 'opacity ease 2s';
+        this.gameOverTextEl.style.opacity = '0.0';
+        this.gameOverEl.appendChild(this.gameOverTextEl);
+
         //
         // Appending to DOM
         //
 
         this.screen = document.getElementById('screen');
+        this.screen.appendChild(this.gameOverEl);
         this.screen.appendChild(this.topBarEl);
         this.screen.appendChild(this.dialogEl);
         this.screen.appendChild(this.controlsEl);
+    }
+
+    showGameOver() {
+        this.gameOverEl.style.display = 'flex';
+        setTimeout(() => this.gameOverTextEl.style.opacity = '1.0', 500);
+        setTimeout(() => {
+            if (confirm("Try again?")) {
+				location.reload();
+			} else {
+                window.close();
+            }
+        }, 3000);
     }
 
     updateScore(score, goal) {

@@ -38,10 +38,11 @@ class Game {
             this.freeze = false;
             
 
-            // Lost
+            // Lost, go to game over screen.
             if (this.goal > this.score) {
-                // Go to game over screen.
-
+                this.ui.showGameOver();
+                this.transition.leave();
+                return;
 
             // Won, setup new level.
             } else if (this.score >= this.goal) {
