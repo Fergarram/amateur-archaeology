@@ -36,7 +36,8 @@ class AssetLoader {
 			dig: 'assets/snd_dig.wav',
 			good: 'assets/snd_good.wav',
 			hurt: 'assets/snd_hurt.wav',
-			step: 'assets/snd_step.wav'
+			step: 'assets/snd_step.wav',
+			loose: 'assets/snd_loose.wav'
 		};
 	}
 
@@ -70,11 +71,13 @@ class AssetLoader {
 		let loadedSoundsCount = 0;
 
 		for (const name in this.soundFiles) {
-			this.sounds[name] = new Howl({ src: [this.soundFiles[name]] });
+			this.sounds[name] = new Howl({
+				src: [this.soundFiles[name]],
+				volume: 0.8,
+			});
 			this.sounds[name].once('load', () => {
 				loadedSoundsCount += 1;
 			    if (loadedSoundsCount === noSounds) {
-			    	// Finished loading all of them!
 			    	document.dispatchEvent(new Event('allsoundsloaded'));
 			    }
 			});
@@ -91,7 +94,6 @@ class AssetLoader {
 			this.images[image].onload = () => {
 			    loadedImageCount += 1;
 			    if (loadedImageCount === noImages) {
-			    	// Finished loading all of them!
 			    	document.dispatchEvent(new Event('allimagesloaded'));
 			    }
 			}

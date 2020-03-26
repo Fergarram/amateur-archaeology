@@ -3,6 +3,7 @@ class Game {
     constructor() {
         this.ui = null;
         this.player = null;
+        this.assets = null;
         this.grid = null;
         this.transition = null;
         this.treasures = null;
@@ -50,7 +51,6 @@ class Game {
                 this.level += 1;
                 const newGoal = Math.floor(this.goal * 1.5); // I guess level will do something here?
                 this.goal = newGoal - (newGoal % 5); // Only multiples of 5.
-
             }
             
             // Reset anyways
@@ -81,7 +81,19 @@ class Game {
                 if (this.remainingTime === 0) {
                     this.started = false;
                     this.freeze = true;
-                    setTimeout(() => this.endLevel(), 1000);
+                    let ringer = null;
+                    if (this.goal < this.score) {
+                        ringer = setInterval(() => this.assets.playSound('good'), 180);
+                    }
+                    setTimeout(() => {
+                        if (ringer !== null) {
+                            clearInterval(ringer);
+                            this.assets.playSound('start');
+                        } else {
+                            this.assets.playSound('loose');
+                        }
+                        this.endLevel();
+                    }, 1500);
                 }
 
                 this.ui.updateTime(this.remainingTime, this.maxTime);

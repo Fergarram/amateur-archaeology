@@ -45,6 +45,7 @@ class AppCore {
 				Game.player = Player;
 				Game.grid = Grid;
 				Game.treasures = Treasures;
+				Game.assets = AssetLoader;
 				Game.transition = TransitionHelper;
 
 				// Debugging...
