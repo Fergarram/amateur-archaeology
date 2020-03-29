@@ -186,13 +186,23 @@ class Player {
 
 			const dirtAtRight = this.grid.getBlockType(this.grid_x + 1, this.grid_y) === 'dirt';
 			const dirtAtLeft = this.grid.getBlockType(this.grid_x - 1, this.grid_y) === 'dirt';
+			const foeAtRight = this.grid.getBlockType(this.grid_x + 1, this.grid_y) === 'bad_dirt';
+			const foeAtLeft = this.grid.getBlockType(this.grid_x - 1, this.grid_y) === 'bad_dirt';
 
 			if (this.dir === 'right' && dirtAtRight) {
 				this.grid.setBlock(this.grid_x + 1, this.grid_y, 'air');
+			} else if (this.dir === 'right' && foeAtRight) {
+				this.grid.setBlock(this.grid_x + 1, this.grid_y, 'air');
+				// Spawn enemy!
+				console.log('spawn!');
 			}
 
 			if (this.dir === 'left' && dirtAtLeft) {
 				this.grid.setBlock(this.grid_x - 1, this.grid_y, 'air');
+			} else if (this.dir === 'left' && foeAtLeft) {
+				this.grid.setBlock(this.grid_x - 1, this.grid_y, 'air');
+				// Spawn enemy!
+				console.log('spawn!');
 			}
 
 			setTimeout(() => this.sprite = 'idle', 150);
@@ -209,6 +219,12 @@ class Player {
 									  this.grid.getBlockType(this.grid_x + 1, this.grid_y + 1) === 'empty';
 			const dirtAtBottomLeft = this.grid.getBlockType(this.grid_x - 1, this.grid_y + 1) === 'dirt' ||
 									 this.grid.getBlockType(this.grid_x - 1, this.grid_y + 1) === 'empty';
+			const foeAtRight = this.grid.getBlockType(this.grid_x + 1, this.grid_y) === 'bad_dirt';
+			const foeAtLeft = this.grid.getBlockType(this.grid_x - 1, this.grid_y) === 'bad_dirt';
+			const foeAtBottomRight = this.grid.getBlockType(this.grid_x + 1, this.grid_y + 1) === 'bad_dirt' ||
+									 this.grid.getBlockType(this.grid_x + 1, this.grid_y + 1) === 'foe';
+			const foeAtBottomLeft = this.grid.getBlockType(this.grid_x - 1, this.grid_y + 1) === 'bad_dirt' ||
+									this.grid.getBlockType(this.grid_x - 1, this.grid_y + 1) === 'foe';
 
 			if (this.dir === 'right') {
 				if (dirtAtRight) {
@@ -216,6 +232,16 @@ class Player {
 				}
 				if (dirtAtBottomRight) {
 					this.grid.setBlock(this.grid_x + 1, this.grid_y + 1, 'air');
+				}
+				if (foeAtRight) {
+					this.grid.setBlock(this.grid_x + 1, this.grid_y, 'air');
+					// Spawn enemy!
+					console.log('spawn!');
+				}
+				if (foeAtBottomRight) {
+					this.grid.setBlock(this.grid_x + 1, this.grid_y + 1, 'air');
+					// Spawn enemy!
+					console.log('spawn!');
 				}
 			}
 
@@ -225,6 +251,16 @@ class Player {
 				}
 				if (dirtAtBottomLeft) {
 					this.grid.setBlock(this.grid_x - 1, this.grid_y + 1, 'air');
+				}
+				if (foeAtLeft) {
+					this.grid.setBlock(this.grid_x - 1, this.grid_y, 'air');
+					// Spawn enemy!
+					console.log('spawn!');
+				}
+				if (foeAtBottomLeft) {
+					this.grid.setBlock(this.grid_x - 1, this.grid_y + 1, 'air');
+					// Spawn enemy!
+					console.log('spawn!');
 				}
 			}
 

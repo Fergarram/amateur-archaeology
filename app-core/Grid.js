@@ -8,14 +8,6 @@ class Grid {
 		this.size = 32;
 		this.gridList = [];
 		this.timePassed = 0; // Milliseconds
-		// TYPES:
-		// 1. air
-		// 2. dirt
-		// 3. foe
-		// 4. treasureN
-		// 5. empty
-		// 6. null
-		// 7. hard
 	}
 
 	reset() {
@@ -73,6 +65,12 @@ class Grid {
 				if (typeAtRight === 'empty') this.addBlock(x + 1, y, 'dirt');
 				if (typeAtLeft === 'empty') this.addBlock(x - 1, y, 'dirt');
 
+				// Check if foe blocks need bad dirt replacement
+				if (typeBelow === 'foe') this.setBlock(x, y + 1, 'bad_dirt');
+				if (typeAbove === 'foe') this.setBlock(x, y - 1, 'bad_dirt');
+				if (typeAtRight === 'foe') this.setBlock(x + 1, y, 'bad_dirt');
+				if (typeAtLeft === 'foe') this.setBlock(x - 1, y, 'bad_dirt');
+
 				if (type === 'air') {
 					let treasureAbove = typeAbove ? typeAbove.indexOf('treasure') !== -1 : false;
 					let treasureBelow = typeBelow ? typeBelow.indexOf('treasure') !== -1 : false;
@@ -121,26 +119,28 @@ class Grid {
 				dice = Math.floor(Math.random() * 100);
 				
 				if (dice <= 20) {
-					this.setBlock(x, laneY, `treasure2`);
+					this.setBlock(x, laneY, 'treasure2');
 
 				} else if (dice > 20 && dice <= 40) {
-					this.setBlock(x, laneY, `treasure4`);
+					this.setBlock(x, laneY, 'treasure4');
 
 				} else if (dice > 40 && dice <= 60) {
-					this.setBlock(x, laneY, `treasure0`);
+					this.setBlock(x, laneY, 'treasure0');
 					
 				} else if (dice > 60 && dice <= 80) {
-					this.setBlock(x, laneY, `treasure1`);
+					this.setBlock(x, laneY, 'treasure1');
 					
 				} else if (dice > 80 && dice <= 85) {
-					this.setBlock(x, laneY, `treasure5`);
+					this.setBlock(x, laneY, 'treasure5');
 					
 				} else if (dice > 85 && dice <= 90) {
-					this.setBlock(x, laneY, `treasure3`);					
+					this.setBlock(x, laneY, 'treasure3');					
 
 				} else if (dice > 95 && dice <= 100) {
-					this.setBlock(x, laneY, `treasure6`);
+					this.setBlock(x, laneY, 'treasure6');
 				}
+			} else if (dice > 7 && dice < 10) {
+				this.setBlock(x, laneY, 'foe');
 			}
 		}
 	}
@@ -186,6 +186,16 @@ class Grid {
 
 			if (this.gridList[i].type === 'dirt' || this.gridList[i].type === 'hard') {
 				CanvasHelper.drawImage('dirt', x, y);
+			}
+
+			// Debug only!
+			if (this.gridList[i].type === 'foe') {
+				CanvasHelper.drawSquare([1, 0, 0, 1], x + 15, y + 15, 2);
+			}
+
+			if (this.gridList[i].type === 'bad_dirt') {
+				CanvasHelper.drawImage('dirt', x, y);
+				CanvasHelper.drawSquare([1, 0, 0, 1], x + 15, y + 15, 2);
 			}
 
 			// Debug
