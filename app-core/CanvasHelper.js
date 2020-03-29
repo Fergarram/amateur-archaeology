@@ -173,7 +173,7 @@ class CanvasHelper {
 		this.gl.drawArrays(this.gl.POINTS, 0, 1);
 	}
 
-	drawImage(imageName, x, y, a = 1) {
+	drawImage(imageName, x, y, a = 1, flipx = false, flipy = false) {
 		const textureInfo = this.textureInfoArray[imageName];
 		this.gl.bindTexture(this.gl.TEXTURE_2D, textureInfo.texture);
 
@@ -192,8 +192,12 @@ class CanvasHelper {
 		let matrix = m4.orthographic(0, this.canvas.width, this.canvas.height, 0, -1, 1);
 
 		// this matrix will translate our quad to x, y
-		matrix = m4.translate(matrix, x, y, 0);
-		matrix = m4.scale(matrix, textureInfo.width * 2, textureInfo.height * 2, 1);
+		const xx = flipx ? x + (textureInfo.width * 2) : x;
+		const yy = flipy ? y + (extureInfo.height * 2) : y;
+		const sx = flipx ? -1 : 1;
+		const sy = flipy ? -1 : 1;
+		matrix = m4.translate(matrix, xx, yy, 0);
+		matrix = m4.scale(matrix, (textureInfo.width * 2) * sx, (textureInfo.height * 2) * sy, 1);
 		this.gl.uniformMatrix4fv(this.matrixLocation, false, matrix);
 		this.gl.uniform1i(this.textureLocation, 0);
 		this.gl.uniform4fv(this.imageColorUniformLoc, new Float32Array([1, 1, 1, a]));

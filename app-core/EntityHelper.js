@@ -6,6 +6,8 @@ class EntityHelper {
         this.world = null;
         this.grid = null;
         this.speed = 0.1 // Seconds? - More means slower
+        this.elapsedTime = 0;
+        this.shouldFlip = false;
     }
 
     create(gx, gy, type) {
@@ -54,7 +56,13 @@ class EntityHelper {
 
     update(delta) {
         if (this.list.length < 1)
-			return;
+            return;
+            
+        this.elapsedTime += delta;
+        if (this.elapsedTime >= 700) {
+                this.shouldFlip = !this.shouldFlip;
+                this.elapsedTime = 0;
+        }
 
 		for (var i = 0; i < this.list.length; i++) {
             const blockBelow = this.grid.getBlockType(this.list[i].grid_x, this.list[i].grid_y + 1);
@@ -87,7 +95,11 @@ class EntityHelper {
 			return;
 
 		for (var i = 0; i < this.list.length; i++) {
-            CanvasHelper.drawImage(this.list[i].type, this.list[i].x, this.list[i].y);
+            if (this.list[i].type === 'scorpion') {
+                CanvasHelper.drawImage(this.list[i].type, this.list[i].x, this.list[i].y, 1, this.shouldFlip);
+            } else {
+                CanvasHelper.drawImage(this.list[i].type, this.list[i].x, this.list[i].y);
+            }
         }
     }
 }
