@@ -6,7 +6,7 @@ class Game {
         this.assets = null;
         this.grid = null;
         this.transition = null;
-        this.treasures = null;
+        this.entities = null;
         this.level = 1;
         this.maxTime = 60; // Seconds
         this.remainingTime = this.maxTime;
@@ -34,7 +34,7 @@ class Game {
         this.transition.enter(() => {
             this.player.reset();
             this.grid.reset();
-            this.treasures.reset();
+            this.entities.reset();
             this.freeze = false;
             
 

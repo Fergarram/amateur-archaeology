@@ -5,7 +5,7 @@ class Player {
 	constructor() {
 		this.world = null;
 		this.assets = null;
-		this.treasures = null;
+		this.entities = null;
 		this.game = null;
 		this.grid = null;
 		this.grid_x = 2;
@@ -63,7 +63,7 @@ class Player {
 
 			// Updating the grid and treasure lists for clean up, etc.
 			this.grid.updateGrid(this.grid_y);
-			this.treasures.clean(this.grid_y);
+			this.entities.clean(this.grid_y);
 		}
 
 		// Move right
@@ -193,16 +193,14 @@ class Player {
 				this.grid.setBlock(this.grid_x + 1, this.grid_y, 'air');
 			} else if (this.dir === 'right' && foeAtRight) {
 				this.grid.setBlock(this.grid_x + 1, this.grid_y, 'air');
-				// Spawn enemy!
-				console.log('spawn!');
+				this.entities.create(this.grid_x + 1, this.grid_y, 'scorpion');
 			}
 
 			if (this.dir === 'left' && dirtAtLeft) {
 				this.grid.setBlock(this.grid_x - 1, this.grid_y, 'air');
 			} else if (this.dir === 'left' && foeAtLeft) {
 				this.grid.setBlock(this.grid_x - 1, this.grid_y, 'air');
-				// Spawn enemy!
-				console.log('spawn!');
+				this.entities.create(this.grid_x - 1, this.grid_y, 'scorpion');
 			}
 
 			setTimeout(() => this.sprite = 'idle', 150);
@@ -230,18 +228,16 @@ class Player {
 				if (dirtAtRight) {
 					this.grid.setBlock(this.grid_x + 1, this.grid_y, 'air');
 				}
+				if (foeAtRight) {
+					this.grid.setBlock(this.grid_x + 1, this.grid_y, 'air');
+					this.entities.create(this.grid_x + 1, this.grid_y, 'scorpion');
+				}
 				if (dirtAtBottomRight) {
 					this.grid.setBlock(this.grid_x + 1, this.grid_y + 1, 'air');
 				}
-				if (foeAtRight) {
-					this.grid.setBlock(this.grid_x + 1, this.grid_y, 'air');
-					// Spawn enemy!
-					console.log('spawn!');
-				}
 				if (foeAtBottomRight) {
 					this.grid.setBlock(this.grid_x + 1, this.grid_y + 1, 'air');
-					// Spawn enemy!
-					console.log('spawn!');
+					this.entities.create(this.grid_x + 1, this.grid_y + 1, 'scorpion');
 				}
 			}
 
@@ -249,18 +245,16 @@ class Player {
 				if (dirtAtLeft) {
 					this.grid.setBlock(this.grid_x - 1, this.grid_y, 'air');
 				}
+				if (foeAtLeft) {
+					this.grid.setBlock(this.grid_x - 1, this.grid_y, 'air');
+					this.entities.create(this.grid_x - 1, this.grid_y, 'scorpion');
+				}
 				if (dirtAtBottomLeft) {
 					this.grid.setBlock(this.grid_x - 1, this.grid_y + 1, 'air');
 				}
-				if (foeAtLeft) {
-					this.grid.setBlock(this.grid_x - 1, this.grid_y, 'air');
-					// Spawn enemy!
-					console.log('spawn!');
-				}
 				if (foeAtBottomLeft) {
 					this.grid.setBlock(this.grid_x - 1, this.grid_y + 1, 'air');
-					// Spawn enemy!
-					console.log('spawn!');
+					this.entities.create(this.grid_x - 1, this.grid_y + 1, 'scorpion');
 				}
 			}
 
@@ -278,7 +272,7 @@ class Player {
 			}
 		}
 
-		this.treasures.takeTreasures(this.grid_x, this.grid_y, (treasures) => {
+		this.entities.takeTreasures(this.grid_x, this.grid_y, (treasures) => {
 			this.assets.playSound('good');
 			treasures.forEach((t) => {
 				switch(t) {

@@ -1,6 +1,6 @@
 import { easeLinear } from './Utilities.js';
 
-class Treasures {
+class EntityHelper {
     constructor() {
         this.list = [];
         this.world = null;
@@ -40,7 +40,7 @@ class Treasures {
 
         const treasures = [];
         for (var i = 0; i < this.list.length; i++) {
-			if (this.list[i].grid_x === x && this.list[i].grid_y === y) {
+            if (this.list[i].grid_x === x && this.list[i].grid_y === y && this.list[i].type.indexOf('treasure') !== -1) {
                 treasures.push(this.list[i].type);
                 this.list[i] = null;
 			}
@@ -92,4 +92,4 @@ class Treasures {
     }
 }
 
-export default new Treasures();
+export default new EntityHelper();

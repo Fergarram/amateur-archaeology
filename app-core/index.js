@@ -5,7 +5,7 @@ import TransitionHelper from './TransitionHelper.js';
 import Grid from './Grid.js';
 import World from './World.js';
 import Player from './Player.js';
-import Treasures from './Treasures.js';
+import EntityHelper from './EntityHelper.js';
 import Game from './Game.js';
 
 class AppCore {
@@ -33,18 +33,18 @@ class AppCore {
 
 				// Initialing world
 				Grid.world = World;
-				Grid.treasures = Treasures;
-				Treasures.world = World;
-				Treasures.grid = Grid;
+				Grid.entities = EntityHelper;
+				EntityHelper.world = World;
+				EntityHelper.grid = Grid;
 				Player.assets = AssetLoader;
 				Player.world = World;
 				Player.game = Game;
 				Player.grid = Grid;
-				Player.treasures = Treasures;
+				Player.entities = EntityHelper;
 				Game.ui = UserInterface;
 				Game.player = Player;
 				Game.grid = Grid;
-				Game.treasures = Treasures;
+				Game.entities = EntityHelper;
 				Game.assets = AssetLoader;
 				Game.transition = TransitionHelper;
 
@@ -55,7 +55,7 @@ class AppCore {
 				window.Player = Player;
 				window.AssetLoader = AssetLoader;
 				window.CanvasHelper = CanvasHelper;
-				window.Treasures = Treasures;
+				window.EntityHelper = EntityHelper;
 				window.Game = Game;
 				window.UserInterface = UserInterface;
 				window.TransitionHelper = TransitionHelper;
@@ -78,14 +78,14 @@ class AppCore {
 		}
 		World.update(delta);
 		Player.update(delta);
-		Treasures.update(delta);
+		EntityHelper.update(delta);
 		Game.update(delta);
 	}
 
 	draw() {
 		World.draw(CanvasHelper);
 		Grid.draw(CanvasHelper);
-		Treasures.draw(CanvasHelper);
+		EntityHelper.draw(CanvasHelper);
 		Player.draw(CanvasHelper);
 	}
 

@@ -2,7 +2,7 @@ class Grid {
 
 	constructor() {
 		this.world = null;
-		this.treasures = null;
+		this.entities = null;
 		this.global_x = 576;
 		this.global_y = 192;
 		this.size = 32;
@@ -54,6 +54,10 @@ class Grid {
 					y: y
 				};
 
+				if (type === 'bad_dirt') {
+					return;
+				}
+
 				const typeBelow = this.getBlockType(x, y + 1);
 				const typeAbove = this.getBlockType(x, y - 1);
 				const typeAtRight = this.getBlockType(x + 1, y);
@@ -79,22 +83,22 @@ class Grid {
 					
 					if (treasureAbove) {
 						this.setBlock(x, y - 1, 'air');
-						this.treasures.create(x, y - 1, typeAbove);
+						this.entities.create(x, y - 1, typeAbove);
 					}
 
 					if (treasureBelow) {
 						this.setBlock(x, y + 1, 'air');
-						this.treasures.create(x, y + 1, typeBelow);
+						this.entities.create(x, y + 1, typeBelow);
 					}
 		
 					if (treasureAtLeft) {
 						this.setBlock(x - 1, y, 'air');
-						this.treasures.create(x - 1, y, typeAtLeft);
+						this.entities.create(x - 1, y, typeAtLeft);
 					}
 		
 					if (treasureAtRight) {
 						this.setBlock(x + 1, y, 'air');
-						this.treasures.create(x + 1, y, typeAtRight);
+						this.entities.create(x + 1, y, typeAtRight);
 					}
 				}
 
