@@ -92,7 +92,7 @@ class AppCore {
 	keyboardEventHandler(event) {
 		event.preventDefault();
 
-		if (UserInterface.isActive && !Player.canMove) {
+		if (UserInterface.isActive && !Player.canMove && !Game.started) {
 			Player.canMove = true;
 			Game.started = true;
 			UserInterface.hideDialog();

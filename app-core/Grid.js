@@ -192,14 +192,8 @@ class Grid {
 				CanvasHelper.drawImage('dirt', x, y);
 			}
 
-			// Debug only!
-			if (this.gridList[i].type === 'foe') {
-				CanvasHelper.drawSquare([1, 0, 0, 1], x + 15, y + 15, 2);
-			}
-
 			if (this.gridList[i].type === 'bad_dirt') {
 				CanvasHelper.drawImage('dirt', x, y);
-				CanvasHelper.drawSquare([1, 0, 0, 1], x + 15, y + 15, 2);
 			}
 
 			// Debug

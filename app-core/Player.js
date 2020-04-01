@@ -24,6 +24,7 @@ class Player {
 		this.isFalling = false;
 		this.lastKeyPressed = false;
 		this.sprite = 'idle';
+		this.last_sprite = 'idle';
 		this.canMove = false;
 	}
 
@@ -113,15 +114,12 @@ class Player {
 			}
 		}
 
-		// Update sprite
-		this.currentImage = `${this.sprite}_${this.dir}`;
-
 		// Camera
 		this.world.updateCamera(this.y);
 	}
 
 	draw(CanvasHelper) {
-		CanvasHelper.drawImage(this.currentImage, this.world.x + this.x, this.world.y + this.y);
+		CanvasHelper.drawImage(this.sprite, this.world.x + this.x, this.world.y + this.y, 1, this.dir === 'left');
 
 		if (window.DEBUG) {
 			const text = `(${this.grid_x}, ${this.grid_y})`;
@@ -307,6 +305,13 @@ class Player {
 						break;
 					case 'scorpion':
 						playHurtSound = true;
+						this.last_sprite = this.sprite;
+						this.sprite = 'hurt';
+						this.canMove = false;
+						setTimeout(() => {
+							this.sprite = this.last_sprite;
+							this.canMove = true;
+						}, 1000);
 						break;
 				}
 			});

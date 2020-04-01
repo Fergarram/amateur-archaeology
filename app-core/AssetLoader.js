@@ -5,12 +5,10 @@ class AssetLoader {
 		this.images = {};
 		this.sounds = {};
 		this.imageFiles = {
-			dig_right: 'assets/dig.png',
-			idle_right: 'assets/idle.png',
-			move_right: 'assets/move.png',
-			dig_left: 'assets/dig_left.png',
-			move_left: 'assets/move_left.png',
-			idle_left: 'assets/idle_left.png',
+			dig: 'assets/dig.png',
+			idle: 'assets/idle.png',
+			move: 'assets/move.png',
+			hurt: 'assets/hurt.png',
 			dirt: 'assets/dirt.png',
 			fire: 'assets/fire.png',
 			scorpion: 'assets/scorpion.png',
