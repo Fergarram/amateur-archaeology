@@ -272,33 +272,50 @@ class Player {
 			}
 		}
 
-		this.entities.takeTreasures(this.grid_x, this.grid_y, (treasures) => {
-			this.assets.playSound('good');
-			treasures.forEach((t) => {
+		this.entities.collide(this.grid_x, this.grid_y, (entities) => {
+			let playGoodSound = false;
+			let playHurtSound = false;
+			entities.forEach((t) => {
 				switch(t) {
 					case 'treasure2':
 						this.game.addPoints(15);
+						playGoodSound = true;
 						break;
 					case 'treasure4':
 						this.game.addPoints(20);
+						playGoodSound = true;
 						break;
 					case 'treasure0':
 						this.game.addPoints(25);
+						playGoodSound = true;
 						break;
 					case 'treasure1':
 						this.game.addPoints(30);
+						playGoodSound = true;
 						break;
 					case 'treasure5':
 						this.game.addPoints(80);
+						playGoodSound = true;
 						break;
 					case 'treasure3':
 						this.game.addPoints(100);
+						playGoodSound = true;
 						break;
 					case 'treasure6':
 						this.game.addTime(15);
+						playGoodSound = true;
+						break;
+					case 'scorpion':
+						playHurtSound = true;
 						break;
 				}
 			});
+			if (playGoodSound) {
+				this.assets.playSound('good');
+			}
+			if (playHurtSound) {
+				this.assets.playSound('hurt');
+			}
 		});
 		
 	}

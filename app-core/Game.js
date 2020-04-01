@@ -30,6 +30,14 @@ class Game {
         }
     }
 
+    substractTime(time) {
+        if (this.remainingTime - time <= 0) {
+            this.remainingTime = 0;
+        } else {
+            this.remainingTime -= time;
+        }
+    }
+
     endLevel() {
         this.transition.enter(() => {
             this.player.reset();

@@ -35,22 +35,22 @@ class EntityHelper {
         this.list = this.list.filter(t => t.grid_y >= player_y - 4);
     }
 
-    takeTreasures(x, y, callback) {
+    collide(x, y, callback) {
         if (this.list < 1) {
             return;
         }
 
-        const treasures = [];
+        const entitiesAtPos = [];
         for (var i = 0; i < this.list.length; i++) {
-            if (this.list[i].grid_x === x && this.list[i].grid_y === y && this.list[i].type.indexOf('treasure') !== -1) {
-                treasures.push(this.list[i].type);
+            if (this.list[i].grid_x === x && this.list[i].grid_y === y) {
+                entitiesAtPos.push(this.list[i].type);
                 this.list[i] = null;
 			}
         }
 
-        if (treasures.length > 0) {
+        if (entitiesAtPos.length > 0) {
             this.list = this.list.filter(t => t !== null);
-            callback(treasures);
+            callback(entitiesAtPos);
         }
     }
 
