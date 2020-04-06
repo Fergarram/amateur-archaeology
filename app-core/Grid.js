@@ -143,7 +143,7 @@ class Grid {
 				} else if (dice > 95 && dice <= 100) {
 					this.setBlock(x, laneY, 'treasure6');
 				}
-			} else if (dice > 7 && dice < 10) {
+			} else if (dice > 7 && dice < 12) {
 				this.setBlock(x, laneY, 'foe');
 			}
 		}

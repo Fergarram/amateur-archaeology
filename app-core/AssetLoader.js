@@ -60,8 +60,11 @@ class AssetLoader {
 		return Promise.all([imagesLoaded, soundsLoaded]);
 	}
 
-	playSound(name) {
-		this.sounds[name].play();
+	playSound(name, rate = 1) {
+		const id = this.sounds[name].play();
+		if (rate !== 1) {
+			this.sounds[name].rate(rate, id);
+		}
 	}
 
 	loadSounds() {

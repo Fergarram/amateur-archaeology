@@ -191,14 +191,14 @@ class Player {
 				this.grid.setBlock(this.grid_x + 1, this.grid_y, 'air');
 			} else if (this.dir === 'right' && foeAtRight) {
 				this.grid.setBlock(this.grid_x + 1, this.grid_y, 'air');
-				this.entities.create(this.grid_x + 1, this.grid_y, 'scorpion');
+				this.entities.create(this.grid_x + 1, this.grid_y, 'foe');
 			}
 
 			if (this.dir === 'left' && dirtAtLeft) {
 				this.grid.setBlock(this.grid_x - 1, this.grid_y, 'air');
 			} else if (this.dir === 'left' && foeAtLeft) {
 				this.grid.setBlock(this.grid_x - 1, this.grid_y, 'air');
-				this.entities.create(this.grid_x - 1, this.grid_y, 'scorpion');
+				this.entities.create(this.grid_x - 1, this.grid_y, 'foe');
 			}
 
 			setTimeout(() => this.sprite = 'idle', 150);
@@ -228,14 +228,14 @@ class Player {
 				}
 				if (foeAtRight) {
 					this.grid.setBlock(this.grid_x + 1, this.grid_y, 'air');
-					this.entities.create(this.grid_x + 1, this.grid_y, 'scorpion');
+					this.entities.create(this.grid_x + 1, this.grid_y, 'foe');
 				}
 				if (dirtAtBottomRight) {
 					this.grid.setBlock(this.grid_x + 1, this.grid_y + 1, 'air');
 				}
 				if (foeAtBottomRight) {
 					this.grid.setBlock(this.grid_x + 1, this.grid_y + 1, 'air');
-					this.entities.create(this.grid_x + 1, this.grid_y + 1, 'scorpion');
+					this.entities.create(this.grid_x + 1, this.grid_y + 1, 'foe');
 				}
 			}
 
@@ -245,14 +245,14 @@ class Player {
 				}
 				if (foeAtLeft) {
 					this.grid.setBlock(this.grid_x - 1, this.grid_y, 'air');
-					this.entities.create(this.grid_x - 1, this.grid_y, 'scorpion');
+					this.entities.create(this.grid_x - 1, this.grid_y, 'foe');
 				}
 				if (dirtAtBottomLeft) {
 					this.grid.setBlock(this.grid_x - 1, this.grid_y + 1, 'air');
 				}
 				if (foeAtBottomLeft) {
 					this.grid.setBlock(this.grid_x - 1, this.grid_y + 1, 'air');
-					this.entities.create(this.grid_x - 1, this.grid_y + 1, 'scorpion');
+					this.entities.create(this.grid_x - 1, this.grid_y + 1, 'foe');
 				}
 			}
 
@@ -270,7 +270,7 @@ class Player {
 			}
 		}
 
-		this.entities.collide(this.grid_x, this.grid_y, (entities) => {
+		this.entities.removeAtPos(this.grid_x, this.grid_y, (entities) => {
 			let playGoodSound = false;
 			let playHurtSound = false;
 			entities.forEach((t) => {
@@ -313,10 +313,20 @@ class Player {
 							this.canMove = true;
 						}, 1000);
 						break;
+					case 'fire':
+						playHurtSound = true;
+						this.last_sprite = this.sprite;
+						this.sprite = 'hurt';
+						setTimeout(() => {
+							this.sprite = this.last_sprite;
+						}, 500);
+						this.game.substractTime(10);
+						break;
 				}
 			});
 			if (playGoodSound) {
-				this.assets.playSound('good');
+				const rate = this.game.score >= this.game.goal ? 1.25 : 1;
+				this.assets.playSound('good', rate);
 			}
 			if (playHurtSound) {
 				this.assets.playSound('hurt');
