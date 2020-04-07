@@ -87,7 +87,7 @@ class Game {
                 this.remainingTime -= 1;
                 this.elapsedTime = 0;
 
-                if (this.remainingTime === 0) {
+                if (this.remainingTime <= 0) {
                     this.started = false;
                     this.freeze = true;
                     let ringer = null;
