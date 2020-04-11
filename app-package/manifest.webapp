@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "name": "Amateur Archaeology",
+  "description": "A small game about finding treasures in the desert.",
+  "type": "web",
+  "launch_path": "/index.html",
+  "fullscreen": "true",
+  "icons": {
+    "56": "/icons/icon_56.png",
+    "112": "/icons/icon_112.png",
+    "128": "/icons/icon_128.png"
+  },
+  "developer": {
+    "name": "Fernando Garcia",
+    "url": "https://fernando.works"
+  },
+  "locales": {
+    "en-US": {
+      "name": "Amateur Archaeology",
+      "subtitle": "A small game about finding treasures in the desert.",
+      "description": "A small game about finding treasures in the desert."
+    }
+  },
+  "default_locale": "en-US"
+}

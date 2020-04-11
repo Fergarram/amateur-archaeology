@@ -1,0 +1,5 @@
+body{background-color:#424242;padding-top:1rem}main.svelte-1i3izob{display:flex;justify-content:center;align-self:center;width:100%;height:100%}#device-io.svelte-1i3izob{margin-top:91px;margin-left:50px}#phone.svelte-1i3izob{width:340px;height:1180px;background:url('../nokia.svg')}#screen.svelte-1i3izob{width:240px;height:320px;background:black}
+#keyboard.svelte-xd431t{width:240px;margin-top:63px;position:absolute}
+button.svelte-623b3k{opacity:0.0;position:absolute;background:none;outline:none;border:none;margin:0;padding:0}button.svelte-623b3k:hover{opacity:0.25;cursor:pointer}button.svelte-623b3k:active{opacity:0.5}
+
+/*# sourceMappingURL=bundle.css.map */

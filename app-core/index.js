@@ -128,4 +128,5 @@ class AppCore {
 	}
 }
 
-export default new AppCore();
+const App = new AppCore();
+App.init();

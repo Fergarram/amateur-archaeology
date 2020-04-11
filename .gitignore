@@ -1,7 +1,6 @@
 ### Banana App ###
-banana-simulator/public/build
-banana-simulator/public/assets
-banana-runner/build
+app-package/assets
+app-simulator/assets
 
 ### Linux ###
 *~

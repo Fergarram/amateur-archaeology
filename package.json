@@ -1,0 +1,31 @@
+{
+  "name": "amateur-archaeology",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build:prod": "webpack --env production",
+    "build:sim": "webpack --env simulator",
+    "build": "webpack --env development",
+    "dev": "webpack-dev-server --env simulator"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fergarram/amateur-archaeology.git"
+  },
+  "keywords": [],
+  "author": "Fernando Garcia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fergarram/amateur-archaeology/issues"
+  },
+  "homepage": "https://github.com/Fergarram/amateur-archaeology#readme",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "babel-loader": "^8.1.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
