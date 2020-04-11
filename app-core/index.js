@@ -26,7 +26,7 @@ class AppCore {
 				TransitionHelper.init(CanvasHelper.gl);
 
 				// Initialize keyboard event handler
-				document.addEventListener('keydown', this.keyboardEventHandler);
+				document.addEventListener('keydown', this.keyboardEventHandler);				
 
 				// Randomize the grid
 				Grid.reset();
@@ -47,6 +47,9 @@ class AppCore {
 				Game.entities = EntityHelper;
 				Game.assets = AssetLoader;
 				Game.transition = TransitionHelper;
+
+				// Preapare the ad
+				UserInterface.prepareAd();
 
 				// Debugging...
 				window.DEBUG = false;

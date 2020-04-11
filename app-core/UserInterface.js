@@ -16,6 +16,8 @@ class UserInterface {
         this.gameOverEl = null;
         this.gameOverTextEl = null;
         this.isActive = false;
+        this.ad = null;
+        this.willExit = false;
     }
 
     init() {
@@ -155,7 +157,6 @@ class UserInterface {
         this.gameOverEl.style.height = '320px';
         this.gameOverEl.style.position = 'absolute';
         this.gameOverEl.style.backgroundColor = '#000000';
-        this.gameOverEl.style.zIndex = 99999;
         this.gameOverEl.style.display = 'none';
         this.gameOverEl.style.justifyContent = 'center';
         this.gameOverEl.style.alignItems = 'center';
@@ -177,15 +178,51 @@ class UserInterface {
     }
 
     showGameOver() {
+        this.topBarEl.style.visibility = 'hidden';
+        document.getElementById('MainCanvas').style.visibility = 'hidden';
+        this.topBarEl.style.visibility = 'hidden';
         this.gameOverEl.style.display = 'flex';
         setTimeout(() => this.gameOverTextEl.style.opacity = '1.0', 500);
         setTimeout(() => {
             if (confirm("Try again?")) {
-				location.reload();
+                this.showAd();
 			} else {
-                window.close();
+                this.willExit = true;
+                this.showAd();
             }
         }, 3000);
+    }
+
+    showAd() {
+        if (this.ad) {
+            this.ad.call('display');
+        } else {
+            this.redirectUser();
+        }
+    }
+
+    redirectUser() {
+        if (this.willExit) {
+            window.close();
+        } else {
+            location.reload();
+        }
+    }
+
+    prepareAd() {
+        if (window.getKaiAd) {
+            window.getKaiAd({
+                publisher: '98ce6faa-00cf-4756-b191-f7019c715e51',
+                app: 'Amateur Archaeology',
+                test: 1,
+                slot: 'Game Over Screen',
+                onerror: err => console.error('Got error when trying to fetch ad:', err),
+                onready: ad => {
+                    this.ad = ad;
+                    this.ad.on('close', () => this.redirectUser());
+                }
+            });
+        }
     }
 
     updateScore(score, goal) {
