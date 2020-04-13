@@ -33,13 +33,11 @@
 
 * [About the Project](#about-the-project)
 * [Building The Project](#building-the-project)
-  * [Prerequisites](#prerequisites)
-* [Usage](#usage)
-* [Roadmap](#roadmap)
+  * [Simulator And Bundling](#simulator-and-bundling)
+  * [Using KaiOS Devices](#using-kaios-devices)
 * [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
-* [Acknowledgements](#acknowledgements)
 
 
 
