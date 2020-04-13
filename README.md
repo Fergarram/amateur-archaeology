@@ -32,10 +32,8 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
+* [Building The Project](#building-the-project)
   * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
 * [Usage](#usage)
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
@@ -48,59 +46,62 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`fergarram`, `amateur-archaeology`, `_fergarram_`, `fergarram@gmail.com`
+I originally made this game for PC a few years ago for a game jam, you can take a look at it on [fergarram.itch.io](https://fergarram.itch.io/amateur-archaeology-iii).
 
+I also wrote a devlog for this project which you can read at [dev.to/fergarram](dev.to/fergarram).
 
-### Built With
+The game is written in ES6 using Canvas with a WebGL context. I didn't use any wrapper, library or framework for WebGL except for a math utility lib written by [webglfundamentals.org](https://webglfundamentals.org/).
 
-* []()
-* []()
-* []()
+The simulator was made using [Svelte](svelte.dev), and the device graphics were traced by hand using a photo of my real Banana Phone using Sketch.
 
-
+I also created a [template](https://github.com/Fergarram/banana-app) for creating similarly-styled KaiOS apps which includes the source code for the simulator.
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Building The Project
 
 To get a local copy up and running follow these simple steps.
 
-### Prerequisites
+### Simulator And Bundling
+For using the simulator and packaging the app you only need NPM:
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
-
-### Installation
- 
-1. Clone the amateur-archaeology
 ```sh
 git clone https://github.com/fergarram/amateur-archaeology.git
-```
-2. Install NPM packages
-```sh
+
 npm install
+
+# Local server for the simulator (game included)
+npm run dev
+
+# Static files for the simulator (game included)
+npm run build:sim
+
+# KaiOS App Package (Develpment)
+npm run build
+
+# KaiOS App Package (Production)
+npm run build:prod
 ```
 
+### Using KaiOS Devices
 
+If you want to run this on your real KaiOS device, you need to first enable development mode on it by dialing `*#*#33284#*#*`. You should be able to see a small bug icon on the status bar of your device.
 
-<!-- USAGE EXAMPLES -->
-## Usage
+Then, you need to make sure your device is detected by the adb tool:
+```
+> adb devices
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+List of devices attached
+4939400 device
+```
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+After making sure your device is connected, you need to run the following command to forward your devices debugging TCP port:
+```
+adb forward tcp:6000 localfilesystem:/data/local/debugger-socket
+```
 
+Open up Firefox 49.0 (Version is very important!) WebIDE and click on the "Remote Runtime" and then click ok when the popup message appears. Lastly, you select the app-package folder and simply click on the play button.
 
-
-<!-- ROADMAP -->
-## Roadmap
-
-See the [open issues](https://github.com/fergarram/amateur-archaeology/issues) for a list of proposed features (and known issues).
-
+Setting up the environment for developing on for KaiOS can be tricky at first, you can take a look at this [article](https://nolanlawson.com/2019/09/22/the-joy-and-challenge-of-developing-for-kaios/) for more info on that, or read the official documentation at [developer.kaiostech.com](https://developer.kaiostech.com/).
 
 
 <!-- CONTRIBUTING -->
@@ -126,21 +127,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@_fergarram_](https://twitter.com/_fergarram_) - fergarram@gmail.com
-
-Project Link: [https://github.com/fergarram/amateur-archaeology](https://github.com/fergarram/amateur-archaeology)
-
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-
-* []()
-* []()
-* []()
-
-
-
+You can reach out to me through [LinkedIn](https://linkedin.com/in/fergarram), [Dev.to](dev.to/fergarram), or [Twitter](https://twitter.com/_fergarram_).
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
