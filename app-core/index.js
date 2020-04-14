@@ -50,6 +50,9 @@ class AppCore {
 				Game.assets = AssetLoader;
 				Game.transition = TransitionHelper;
 
+				// Preapare the ad
+				UserInterface.prepareAd();
+
 				if (process.env.NODE_ENV === 'development') {
 					window.Grid = Grid;
 					window.World = World;
