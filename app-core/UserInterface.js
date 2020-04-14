@@ -213,7 +213,7 @@ class UserInterface {
         if (window.getKaiAd) {
             window.getKaiAd({
                 publisher: '98ce6faa-00cf-4756-b191-f7019c715e51',
-                app: 'Amateur Archaeology',
+                app: 'Treasure Hunter',
                 test: process.env.NODE_ENV === 'development' ? 1 : 0,
                 slot: 'Game Over Screen',
                 onerror: err => console.error('Got error when trying to fetch ad:', err),

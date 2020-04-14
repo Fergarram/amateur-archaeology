@@ -1,10 +1,13 @@
 {
   "version": "1.0.0",
-  "name": "Amateur Archaeology",
-  "description": "A small game about finding treasures in the desert.",
+  "name": "Treasure Hunter",
+  "description": "Small game about finding treasures in the sand.",
   "type": "web",
   "launch_path": "/index.html",
+  "theme_color": "#323232",
   "fullscreen": "true",
+  "orientation": [ "portrait-primary" ],
+  "categories": [ "games" ],
   "icons": {
     "56": "/icons/icon_56.png",
     "112": "/icons/icon_112.png",
@@ -16,9 +19,9 @@
   },
   "locales": {
     "en-US": {
-      "name": "Amateur Archaeology",
-      "subtitle": "A small game about finding treasures in the desert.",
-      "description": "A small game about finding treasures in the desert."
+      "name": "Treasure Hunter",
+      "subtitle": "Get all the treasures!",
+      "description": "Go on an adventure to find valuable treasures in the desert. But beware! There are dangers beneath the sand!"
     }
   },
   "default_locale": "en-US"
