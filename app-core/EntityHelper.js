@@ -127,6 +127,13 @@ class EntityHelper {
                         this.list[i].isMoving = false;
                         this.list[i].grid_x += 1;
                         
+                        if (this.list[i].grid_x === this.player.grid_x && this.list[i].grid_y === this.player.grid_y) {
+                            this.player.burn();
+                            if (this.removeAtPos(this.list[i].grid_x, this.list[i].grid_y, () => {})) {
+                                continue;
+                            }
+                        }
+
                         if (this.canBurnItem(this.list[i].grid_x, this.list[i].grid_y)) {
                             const playSound = () => this.assets.playSound('hurt');
                             if (this.removeAtPos(this.list[i].grid_x, this.list[i].grid_y, playSound)) {
@@ -164,6 +171,13 @@ class EntityHelper {
                         this.list[i].isMoving = false;
                         this.list[i].grid_x -= 1;
                         
+                        if (this.list[i].grid_x === this.player.grid_x && this.list[i].grid_y === this.player.grid_y) {
+                            this.player.burn();
+                            if (this.removeAtPos(this.list[i].grid_x, this.list[i].grid_y, () => {})) {
+                                continue;
+                            }
+                        }
+
                         if (this.canBurnItem(this.list[i].grid_x, this.list[i].grid_y)) {
                             const playSound = () => this.assets.playSound('hurt');
                             if (this.removeAtPos(this.list[i].grid_x, this.list[i].grid_y, playSound)) {
@@ -196,6 +210,13 @@ class EntityHelper {
                     this.list[i].isFalling = false;
                     this.list[i].grid_y += 1;
                     if (this.list[i].type === 'fire') {
+                        if (this.list[i].grid_x === this.player.grid_x && this.list[i].grid_y === this.player.grid_y) {
+                            this.player.burn();
+                            if (this.removeAtPos(this.list[i].grid_x, this.list[i].grid_y, () => {})) {
+                                continue;
+                            }
+                        }
+
                         if (this.canBurnItem(this.list[i].grid_x, this.list[i].grid_y)) {
                             const playSound = () => this.assets.playSound('hurt');
                             if (this.removeAtPos(this.list[i].grid_x, this.list[i].grid_y, playSound)) {

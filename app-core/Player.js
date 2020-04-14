@@ -256,8 +256,8 @@ class Player {
 	}
 
 	burn() {
-		playHurtSound = true;
 		this.last_sprite = this.sprite;
+		this.assets.playSound('hurt');
 		this.sprite = 'hurt';
 		setTimeout(() => {
 			this.sprite = this.last_sprite;

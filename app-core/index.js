@@ -37,6 +37,7 @@ class AppCore {
 				EntityHelper.world = World;
 				EntityHelper.grid = Grid;
 				EntityHelper.assets = AssetLoader;
+				EntityHelper.player = Player;
 				Player.assets = AssetLoader;
 				Player.world = World;
 				Player.game = Game;
