@@ -167,11 +167,6 @@ class Grid {
 				} else {
 					CanvasHelper.drawSquare([0.721, 0.768, 0.831, 1], x, y, 32);
 				}
-
-				// Debug
-				if (window.DEBUG) {
-					CanvasHelper.drawText(`(${this.gridList[i].x}, ${this.gridList[i].y})`, x, y);
-				}
 			}
 		}
 
@@ -194,11 +189,6 @@ class Grid {
 
 			if (this.gridList[i].type === 'bad_dirt') {
 				CanvasHelper.drawImage('dirt', x, y);
-			}
-
-			// Debug
-			if (window.DEBUG) {
-				CanvasHelper.drawText(`(${this.gridList[i].x}, ${this.gridList[i].y})`, x, y);
 			}
 		}
 	}

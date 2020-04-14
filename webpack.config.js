@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = function (_env) {
@@ -32,6 +33,11 @@ module.exports = function (_env) {
             port: 5000
         },
         plugins: [
+            new webpack.DefinePlugin({
+                'process.env.NODE_ENV': JSON.stringify(
+                    (isDevelopment || isSimulator) ? 'development' : 'production'
+                )
+            }),
             new CopyPlugin([
                 {
                     from: './app-core/assets',

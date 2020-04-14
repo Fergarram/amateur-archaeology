@@ -120,11 +120,6 @@ class Player {
 
 	draw(CanvasHelper) {
 		CanvasHelper.drawImage(this.sprite, this.world.x + this.x, this.world.y + this.y, 1, this.dir === 'left');
-
-		if (window.DEBUG) {
-			const text = `(${this.grid_x}, ${this.grid_y})`;
-			CanvasHelper.drawText(text, this.world.x + this.x, this.world.y + this.y);
-		}
 	}
 
 	onKeyDown(key) {
@@ -260,6 +255,16 @@ class Player {
 		}
 	}
 
+	burn() {
+		playHurtSound = true;
+		this.last_sprite = this.sprite;
+		this.sprite = 'hurt';
+		setTimeout(() => {
+			this.sprite = this.last_sprite;
+		}, 500);
+		this.game.substractTime(10);
+	}
+
 	calculateGridPosition() {
 		this.grid_x = Math.floor((this.x - this.grid_startx) / this.grid_size);
 		this.grid_y = Math.floor((this.y - this.grid_starty) / this.grid_size);
@@ -314,13 +319,7 @@ class Player {
 						}, 1000);
 						break;
 					case 'fire':
-						playHurtSound = true;
-						this.last_sprite = this.sprite;
-						this.sprite = 'hurt';
-						setTimeout(() => {
-							this.sprite = this.last_sprite;
-						}, 500);
-						this.game.substractTime(10);
+						this.burn();
 						break;
 				}
 			});

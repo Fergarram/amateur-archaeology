@@ -36,6 +36,7 @@ class AppCore {
 				Grid.entities = EntityHelper;
 				EntityHelper.world = World;
 				EntityHelper.grid = Grid;
+				EntityHelper.assets = AssetLoader;
 				Player.assets = AssetLoader;
 				Player.world = World;
 				Player.game = Game;
@@ -48,17 +49,17 @@ class AppCore {
 				Game.assets = AssetLoader;
 				Game.transition = TransitionHelper;
 
-				// Debugging...
-				window.DEBUG = false;
-				window.Grid = Grid;
-				window.World = World;
-				window.Player = Player;
-				window.AssetLoader = AssetLoader;
-				window.CanvasHelper = CanvasHelper;
-				window.EntityHelper = EntityHelper;
-				window.Game = Game;
-				window.UserInterface = UserInterface;
-				window.TransitionHelper = TransitionHelper;
+				if (process.env.NODE_ENV === 'development') {
+					window.Grid = Grid;
+					window.World = World;
+					window.Player = Player;
+					window.AssetLoader = AssetLoader;
+					window.CanvasHelper = CanvasHelper;
+					window.EntityHelper = EntityHelper;
+					window.Game = Game;
+					window.UserInterface = UserInterface;
+					window.TransitionHelper = TransitionHelper;
+				}
 
 				AssetLoader.playSound('start');
 				setTimeout(() => {
@@ -101,14 +102,6 @@ class AppCore {
 
 		if (!Game.freeze) {
 			Player.onKeyDown(event.key);
-		}
-
-		if (event.key === '*' || event.key === 'Control') {
-	    	window.DEBUG = !window.DEBUG;
-	    }
-
-		if (window.DEBUG) {
-		    console.log('Key: ' + event.key);
 		}
 
 	    if (event.key === 'Backspace') {

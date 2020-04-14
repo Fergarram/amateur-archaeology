@@ -4,6 +4,8 @@ class EntityHelper {
     constructor() {
         this.list = [];
         this.world = null;
+        this.assets = null;
+        this.player = null;
         this.grid = null;
         this.gravity = 0.1;
         this.speed = 2;
@@ -126,7 +128,7 @@ class EntityHelper {
                         this.list[i].grid_x += 1;
                         
                         if (this.canBurnItem(this.list[i].grid_x, this.list[i].grid_y)) {
-                            const playSound = () => window.AssetLoader.playSound('hurt');
+                            const playSound = () => this.assets.playSound('hurt');
                             if (this.removeAtPos(this.list[i].grid_x, this.list[i].grid_y, playSound)) {
                                 continue;
                             }
@@ -163,7 +165,7 @@ class EntityHelper {
                         this.list[i].grid_x -= 1;
                         
                         if (this.canBurnItem(this.list[i].grid_x, this.list[i].grid_y)) {
-                            const playSound = () => window.AssetLoader.playSound('hurt');
+                            const playSound = () => this.assets.playSound('hurt');
                             if (this.removeAtPos(this.list[i].grid_x, this.list[i].grid_y, playSound)) {
                                 continue;
                             }
@@ -195,7 +197,7 @@ class EntityHelper {
                     this.list[i].grid_y += 1;
                     if (this.list[i].type === 'fire') {
                         if (this.canBurnItem(this.list[i].grid_x, this.list[i].grid_y)) {
-                            const playSound = () => window.AssetLoader.playSound('hurt');
+                            const playSound = () => this.assets.playSound('hurt');
                             if (this.removeAtPos(this.list[i].grid_x, this.list[i].grid_y, playSound)) {
                                 continue;
                             }
