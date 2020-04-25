@@ -46,7 +46,7 @@
 
 I originally made this game for PC a few years ago for a game jam, you can take a look at it on [fergarram.itch.io](https://fergarram.itch.io/amateur-archaeology-iii).
 
-I also wrote a devlog for this project which you can read at [dev.to/fergarram](dev.to/fergarram).
+I also wrote a devlog for this project which you can read at [dev.to/fergarram](https://dev.to/fergarram/creating-a-game-for-feature-phones-using-javascript-3bnn).
 
 The game is written in ES6 using Canvas with a WebGL context. I didn't use any wrapper, library or framework for WebGL except for a math utility lib written by [webglfundamentals.org](https://webglfundamentals.org/).
 
